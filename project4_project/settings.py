@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'marketplace_app',
     'website_app',
     'posts_app',
-    'storages'
+    'storages',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [

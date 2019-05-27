@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^', include(website_urls)),
     url(r'^marketplace/', include(marketplace_urls)),
     url(r'^post/', include(posts_urls)),
+    url(r'^account/', include(user_accounts_urls)),
 ]
 
 if settings.DEBUG: # new

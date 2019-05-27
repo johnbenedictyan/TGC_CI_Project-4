@@ -70,11 +70,14 @@
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
-                    <li class="active main_page"><a href="{% url 'main_page_link' %}">Home</a></li>
-                    <li class="marketplace"><a href="{% url 'marketplace_link'%}">Marketplace</a></li>
-                    <li class="login"><a href="{% url 'login_link'%}">Log In</a></li>
-                    <li class="register"><a href="{% url 'register_link'%}">Register Account</a></li>
+                    <li class="active link_tag" id="home_page_link_tag"><a href="{% url 'main_page_link' %}">Home</a></li>
+                    <li class="link_tag" id="marketplace_link_tag"><a href="{% url 'marketplace_link'%}">Marketplace</a></li>
+                    {% if user.is_authenticated %}
                     <li class="logout"><a href="{% url 'logout_link'%}">Log Out</a></li>
+                    {% else %}
+                    <li class="link_tag" id="login_link_tag"><a href="{% url 'login_link'%}">Log In</a></li>
+                    <li class="link_tag" id="register_link_tag"><a href="{% url 'register_link'%}">Register Account</a></li>
+                    {% endif %}
                 </ul>
             </nav>
             <!-- Button Group -->
@@ -97,6 +100,9 @@
             </div>
         </header>
         <!-- Header Area End -->
+        {% block user_form_section %}
+        {% endblock %}
+        
         {% block product_feed_section %}
         {% endblock %}
         
@@ -198,7 +204,8 @@
     <script src="{% static 'js/plugins.js' %}"></script>
     <!-- Active js -->
     <script src="{% static 'js/active.js' %}"></script>
-
+    {% block page_specific_js %}
+    {% endblock %}
 </body>
 
 </html>

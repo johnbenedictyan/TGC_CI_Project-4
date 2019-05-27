@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block user_form_section %}
+<form method="post">
+    {{ loginform|crispy }}
+</form>
+{% endblock %}
