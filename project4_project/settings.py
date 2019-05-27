@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'project4_project.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-DATABASES = {'default': dj_database_url.parse("postgres://kewvbgynvgrtsj:7a46d1fc2c95b297de42a89d0a83a8a1adb359fe81b296c7a81ddd06ca41c243@ec2-54-221-214-3.compute-1.amazonaws.com:5432/d9kjrnfove80hl")}
+DATABASES = {'default': dj_database_url.parse("postgres://pbqjcgypbjxtsv:154279b8b1b68f18c4b5338076ae3829d67ccd97d382b32cea417e3ef2c19714@ec2-75-101-147-226.compute-1.amazonaws.com:5432/deleru5t9cnkov")}
 if 'test' in sys.argv:
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -160,3 +160,5 @@ STATICFILES_LOCATION = 'static'
 
 MEDIAFILES_LOCATION = "media"
 DEFAULT_FILE_LOCATION = ""
+
+AUTH_USER_MODEL = 'user_accounts_app.UserAccount'
