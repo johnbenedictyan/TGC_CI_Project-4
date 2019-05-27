@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import dj_database_url
 import sys
-import env
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -39,10 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "user_accounts_app",
-    "marketplace_app",
-    "website_app",
-    "posts_app",
+    'user_accounts_app',
+    'marketplace_app',
+    'website_app',
+    'posts_app',
     'storages'
 ]
 
