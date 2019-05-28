@@ -32,7 +32,6 @@ ALLOWED_HOSTS = ['project4-johnbenedict.c9users.io',"tgc-ci-project-4.herokuapp.
 # Application definition
 
 INSTALLED_APPS = [
-    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,6 +43,7 @@ INSTALLED_APPS = [
     'website_app',
     'posts_app',
     'storages',
+    'crispy_forms',
     
 ]
 
