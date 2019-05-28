@@ -1,11 +1,25 @@
 from django import forms
 from .models import UserAccount
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib import auth
 
 class LoginForm(forms.Form):
     username = forms.CharField(required=True)
     password = forms.CharField(required=True, widget=forms.PasswordInput)
-
+    
+    def clean_username(self):
+        input_username = self.cleaned_data.get('username')
+        if UserAccount.objects.filter(username=input_username).count() == 0:
+            raise forms.ValidationError("This user does not exist.")
+        return input_username
+    
+    def clean_password(self):
+        input_username = self.cleaned_data.get('username')
+        input_password = self.cleaned_data.get('password')
+        if not auth.authenticate(username=input_username,password=input_password):
+            raise forms.ValidationError("Incorrect Password.")
+        return input_password
+        
 class RegisterForm(UserCreationForm):
     class Meta:
         model = UserAccount
@@ -14,7 +28,7 @@ class RegisterForm(UserCreationForm):
     def clean_username(self):
         requested_username = self.cleaned_data.get('username')
         if UserAccount.objects.filter(username=requested_username).count() > 0:
-            raise forms.ValidationError("This username is already taken!")
+            raise forms.ValidationError("This username is already taken.")
         return requested_username
             
     def save(self, commit=True):

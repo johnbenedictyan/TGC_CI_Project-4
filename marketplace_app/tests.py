@@ -50,7 +50,7 @@ class ListingCategoryTest(TestCase):
         
 class ListingTest(TestCase):
     def testCanCreateListing(self):
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
         test_listing.save()
@@ -74,11 +74,11 @@ class ListingTest(TestCase):
         self.assertEquals(listing_from_db.categories.all()[0].name,"furniture")
         self.assertEquals(listing_from_db.seller.username,ta.username)
         self.assertEquals(listing_from_db.seller.password,ta.password)
-        self.assertEquals(listing_from_db.seller.user_email,ta.user_email)
+        self.assertEquals(listing_from_db.seller.email,ta.email)
         self.assertEquals(listing_from_db.likes,test_listing.likes)
         
     def testListingCanHaveManyCategories(self):
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",seller=ta)
         test_listing.save()
@@ -103,7 +103,7 @@ class ListingTest(TestCase):
         self.assertEquals(listing_from_db.categories.all()[1].name,"rustic")
         
     def testCanDeleteListing(self):
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",seller=ta)
         test_listing.save()
@@ -120,7 +120,7 @@ class ListingTest(TestCase):
         self.assertEquals(listing_from_db,[])
     
     def testCanUpdateListingDetails(self):
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",seller=ta)
         test_listing.save()
@@ -138,10 +138,10 @@ class ListingTest(TestCase):
         self.assertEquals(tl_from_db.location,"Yishun Avenue 2")
         
     def testListingCanHaveManyLikes(self):
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
-        ta2 = UserAccount(username="rhinorider",password="asd123",user_email="qwe@qwe.com")
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com")
         ta2.save()
         
         test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
@@ -163,10 +163,10 @@ class ListingTest(TestCase):
         self.assertEquals(ta2.likes.count(),1)
     
     def testUser_Can_Have_Many_Likes_On_Different_Listings_From_The_Same_Seller(self):
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
-        ta2 = UserAccount(username="rhinorider",password="asd123",user_email="qwe@qwe.com")
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com")
         ta2.save()
         
         test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
@@ -187,13 +187,13 @@ class ListingTest(TestCase):
         self.assertEquals(ta2.likes.count(),2)
         
     def testUser_Can_Have_Many_Likes_On_Different_Listings_From_Different_Sellers(self):
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
-        ta2 = UserAccount(username="rhinorider",password="asd123",user_email="qwe@qwe.com")
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com")
         ta2.save()
         
-        ta3 = UserAccount(username="girafferider",password="qwerty",user_email="qazwsx@qaz.com")
+        ta3 = UserAccount(username="girafferider",password="qwerty",email="qazwsx@qaz.com")
         ta3.save()
         
         test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
@@ -216,10 +216,10 @@ class ListingTest(TestCase):
         
 class ListingCommentTest(TestCase):
     def testCanCreateComent(self):
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
-        ta2 = UserAccount(username="rhinorider",password="asd123",user_email="qwe@qwe.com")
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com")
         ta2.save()
         
         test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
@@ -242,10 +242,10 @@ class ListingCommentTest(TestCase):
         self.assertEquals(tc_from_db.listing,test_listing)
     
     def testCanUpdateComment(self):
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
-        ta2 = UserAccount(username="rhinorider",password="asd123",user_email="qwe@qwe.com")
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com")
         ta2.save()
         
         test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
@@ -270,10 +270,10 @@ class ListingCommentTest(TestCase):
         self.assertEquals(tc_from_db.comment,"I have received a new product and now it is not wonky")
         
     def testCanDeleteComment(self):
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
-        ta2 = UserAccount(username="rhinorider",password="asd123",user_email="qwe@qwe.com")
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com")
         ta2.save()
         
         test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
@@ -298,10 +298,10 @@ class ListingCommentTest(TestCase):
         
     def testPostCanHaveMultipleCommentsFromTheSamePerson(self):
         #Multiple Comments From the Same Person
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
-        ta2 = UserAccount(username="rhinorider",password="asd123",user_email="qwe@qwe.com")
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com")
         ta2.save()
         
         test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
@@ -320,16 +320,16 @@ class ListingCommentTest(TestCase):
         
     def testPostCanHaveMultipleCommentsFromDifferentPeople(self):
         #Multiple Comments From Different People
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
-        ta2 = UserAccount(username="rhinorider",password="asd123",user_email="qwe@qwe.com")
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com")
         ta2.save()
         
         test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
         test_listing.save()
         
-        ta3 = UserAccount(username="girafferider",password="qwerty",user_email="qazwsx@qaz.com")
+        ta3 = UserAccount(username="girafferider",password="qwerty",email="qazwsx@qaz.com")
         ta3.save()
         
         tc = ListingComment(comment="This product looks wonky",user=ta2,listing=test_listing)
@@ -344,10 +344,10 @@ class ListingCommentTest(TestCase):
         self.assertEquals(ListingComment.objects.all().filter(user=ta3)[0].listing,test_listing)
         
     def testUsersCanHaveMultipleCommentsOnDifferentListingsFromTheSameSeller(self):
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
-        ta2 = UserAccount(username="rhinorider",password="asd123",user_email="qwe@qwe.com")
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com")
         ta2.save()
         
         test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
@@ -368,13 +368,13 @@ class ListingCommentTest(TestCase):
         self.assertEquals(ListingComment.objects.all().filter(user=ta2)[1].listing,test_listing2)
         
     def testUsersCanHaveMultipleCommentsOnDifferentListingsFromDifferentSellers(self):
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
-        ta2 = UserAccount(username="rhinorider",password="asd123",user_email="qwe@qwe.com")
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com")
         ta2.save()
         
-        ta3 = UserAccount(username="girafferider",password="qwerty",user_email="qazwsx@qaz.com")
+        ta3 = UserAccount(username="girafferider",password="qwerty",email="qazwsx@qaz.com")
         ta3.save()
         
         test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)

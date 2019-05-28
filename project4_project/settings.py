@@ -164,5 +164,5 @@ DEFAULT_FILE_LOCATION = ""
 AUTH_USER_MODEL = 'user_accounts_app.UserAccount'
 
 LOGIN_REDIRECT_URL="/"
-LOGIN_URL="/account/login"
+LOGIN_URL="/account/login/"
 LOGOUT_REDIRECT_URL="/"

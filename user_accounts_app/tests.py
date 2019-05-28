@@ -9,31 +9,30 @@ from .models import UserAccount,Group
 
 class UserAccountTest(TestCase):
     def testCanCreateAccount(self):
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
         ta_from_db = UserAccount.objects.all().get(pk=ta.id)
         self.assertEquals(ta.username,ta_from_db.username)
         self.assertEquals(ta.password,ta_from_db.password)
-        self.assertEquals(ta.user_email,ta_from_db.user_email)
-        self.assertEquals(ta.user_dob,ta_from_db.user_dob)
+        self.assertEquals(ta.email,ta_from_db.email)
         
     def testCanUpdateAccountDetails(self):
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
         ta.username="penguinrider123"
         ta.password="password12345"
-        ta.user_email="qwe@qwe.com"
+        ta.email="qwe@qwe.com"
         ta.save()
         
         ta_from_db = UserAccount.objects.all().get(pk=ta.id)
         self.assertEquals(ta_from_db.username,"penguinrider123")
         self.assertEquals(ta_from_db.password,"password12345")
-        self.assertEquals(ta_from_db.user_email,"qwe@qwe.com")
+        self.assertEquals(ta_from_db.email,"qwe@qwe.com")
         
     def testCanDeleteAccount(self):
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
         UserAccount.objects.filter(id=ta.id).delete()
@@ -53,10 +52,10 @@ class GroupTest(TestCase):
         tg = Group(name="Guitar Club",description="For all things guitar related")
         tg.save()
         
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
-        ta2 = UserAccount(username="rhinorider",password="asd123",user_email="qwe@qwe.com")
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com")
         ta2.save()
         
         tg.members.add(ta,ta2)
@@ -84,10 +83,10 @@ class GroupTest(TestCase):
         tg = Group(name="Guitar Club",description="For all things guitar related")
         tg.save()
         
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
-        ta2 = UserAccount(username="rhinorider",password="asd123",user_email="qwe@qwe.com")
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com")
         ta2.save()
         
         tg.members.add(ta,ta2)
@@ -103,10 +102,10 @@ class GroupTest(TestCase):
         tg = Group(name="Guitar Club",description="For all things guitar related")
         tg.save()
         
-        ta = UserAccount(username="penguinrider",password="password123",user_email="asd@asd.com")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com")
         ta.save()
         
-        ta2 = UserAccount(username="rhinorider",password="asd123",user_email="qwe@qwe.com")
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com")
         ta2.save()
         
         tg.members.add(ta,ta2)

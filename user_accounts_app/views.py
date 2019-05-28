@@ -14,7 +14,7 @@ def register(request):
         if dirty_register_form.is_valid():
             dirty_register_form.save()
             messages.success(request,"Your account has been successfully created!")
-            return redirect(seetings.LOGIN_URL)
+            return redirect(settings.LOGIN_URL)
         else:
             messages.error(request,"We are unable to create your account!")
             return render(request,"register.html",{
@@ -45,3 +45,7 @@ def logout(request):
     auth.logout(request)
     messages.success(request, "You have been logged out")
     return redirect(settings.LOGOUT_REDIRECT_URL)
+    
+@login_required       
+def account_details(request):
+    return render(request,"account_details.html")
