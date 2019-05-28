@@ -4,8 +4,6 @@
 # Things needed to be done:
 
 ## Code Red
-1. Get all of the webpages into an extends layout format
-2. Load the static files
 
 ## Code Yellow
 

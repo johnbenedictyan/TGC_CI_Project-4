@@ -119,5 +119,3 @@ class UserAuthenticationTest(TestCase):
         self.assertFormError(response, 'loginform', 'username', 'This field is required.')
         self.assertFormError(response, 'loginform', 'password', 'This field is required.')
     
-    
-    

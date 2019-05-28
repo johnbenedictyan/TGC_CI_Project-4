@@ -6,6 +6,7 @@ class UserAccount(AbstractUser):
     first_name = models.CharField(max_length=30, blank=False)
     last_name = models.CharField(max_length=30, blank=False)
     email = models.EmailField(blank=False)
+    bio = models.TextField(blank=True)
     def __str__(self):
         return self.username
 

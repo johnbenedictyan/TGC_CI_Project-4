@@ -379,13 +379,16 @@
     </div>
 </div>
 {% endblock %}
+{% block page_specific_css %}
 
+{% endblock %}
 {% block page_specific_js %}
 <script type="text/javascript">
     /* global $ */
     $(function(){
        $(".link_tag").removeClass("active");
        $("#marketplace_link_tag").addClass("active");
+       $("#search_link").show();
     });
 </script>
 {% endblock %}

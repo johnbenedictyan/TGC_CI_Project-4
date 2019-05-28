@@ -18,7 +18,8 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}">
-
+    {% block page_specific_css %}
+    {% endblock %}
 </head>
 
 <body>
@@ -73,6 +74,7 @@
                     <li class="active link_tag" id="home_page_link_tag"><a href="{% url 'main_page_link' %}">Home</a></li>
                     <li class="link_tag" id="marketplace_link_tag"><a href="{% url 'marketplace_link'%}">Marketplace</a></li>
                     {% if user.is_authenticated %}
+                    <li class="link_tag account_details_tag" id="account_details_tag"><a href="{% url 'account_details_link'%}">My Account</a></li>
                     <li class="logout"><a href="{% url 'logout_link'%}">Log Out</a></li>
                     {% else %}
                     <li class="link_tag" id="login_link_tag"><a href="{% url 'login_link'%}">Log In</a></li>
@@ -89,7 +91,7 @@
             <div class="cart-fav-search mb-100">
                 <a href="cart.html" class="cart-nav"><img src="{% static 'img/core-img/cart.png' %}" alt=""> Cart <span>(0)</span></a>
                 <a href="#" class="fav-nav"><img src="{% static 'img/core-img/favorites.png' %}" alt=""> Favourite</a>
-                <a href="#" class="search-nav"><img src="{% static 'img/core-img/search.png' %}" alt=""> Search</a>
+                <a href="#" class="search-nav" id="search_link"><img src="{% static 'img/core-img/search.png' %}" alt=""> Search</a>
             </div>
             <!-- Social Button -->
             <div class="social-info d-flex justify-content-between">
@@ -113,6 +115,12 @@
         {% endblock %}
         
         {% block post_details_area_section %}
+        {% endblock %}
+        
+        {% block account_details_main_content %}
+        {% endblock %}
+        
+        {% block main_content %}
         {% endblock %}
     </div>
     <!-- ##### Main Content Wrapper End ##### -->

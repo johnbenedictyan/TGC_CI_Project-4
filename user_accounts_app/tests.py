@@ -9,7 +9,7 @@ from .models import UserAccount,Group
 
 class UserAccountTest(TestCase):
     def testCanCreateAccount(self):
-        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com",first_name="penguin",last_name="rider")
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com",first_name="penguin",last_name="rider",bio="Hi im a penguinrider")
         ta.save()
         
         ta_from_db = UserAccount.objects.all().get(pk=ta.id)
@@ -18,6 +18,7 @@ class UserAccountTest(TestCase):
         self.assertEquals(ta.email,ta_from_db.email)
         self.assertEquals(ta.first_name,ta_from_db.first_name)
         self.assertEquals(ta.last_name,ta_from_db.last_name)
+        self.assertEquals(ta.bio,ta_from_db.bio)
         
     def testCanUpdateAccountDetails(self):
         ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com",first_name="penguin",last_name="rider")

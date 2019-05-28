@@ -1,1 +1,59 @@
-<p>WELCOME TO MY ACCOUNT</p>
+{% extends "layout.html" %}
+{% load static %}
+{% block account_details_main_content %}
+<section class="form-section section-padding-100-0 products-catagories-area clearfix">
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col-4">
+                <img src="" class="img-thumbnail"></img>
+            </div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col">
+                        {{current_user_details.username}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{current_user_details.email}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{current_user_details.first_name}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {{current_user_details.last_name}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3 class="">Bio</h3>
+                <blockquote class="blockquote">
+                    <p class="mb-0">{{current_user_details.bio}}</p>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block page_specific_css %}
+<style>
+    #search_link {
+        display:none;
+    }
+</style>
+{% endblock %}
+{% block page_specific_js %}
+<script type="text/javascript">
+    /* global $ */
+    $(function(){
+       $(".link_tag").removeClass("active");
+       $("#account_details_tag").addClass("active");
+    });
+</script>
+{% endblock %}

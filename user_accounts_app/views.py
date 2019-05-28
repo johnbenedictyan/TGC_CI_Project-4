@@ -3,6 +3,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, RegisterForm
 from project4_project import settings
+from .models import UserAccount,Group
 # Create your views here.
 def register(request):
     if request.method=="GET":
@@ -48,4 +49,9 @@ def logout(request):
     
 @login_required       
 def account_details(request):
-    return render(request,"account_details.html")
+    current_user_id = request.session.get('_auth_user_id')
+    current_user_details = UserAccount.objects.all().get(pk=current_user_id)
+    return render(request,"account_details.html",{
+        "current_user_details":current_user_details
+    })
+    
