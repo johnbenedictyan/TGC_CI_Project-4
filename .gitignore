@@ -253,3 +253,4 @@ dmypy.json
 env.py
 website_templates/
 possibly_useful_stuff/
+useless/

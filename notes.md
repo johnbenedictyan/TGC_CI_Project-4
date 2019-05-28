@@ -26,4 +26,6 @@
 ## USEFUL LINKS
 https://uploadcare.com/ FILE UPLOADING FOR DJANGO
 https://devcenter.heroku.com/articles/django-assets DJANGO STATIC FILES
+https://simpleisbetterthancomplex.com/tutorial/2016/06/27/how-to-use-djangos-built-in-login-system.html DJANGO LOGIN FORMS 
+(Research on how to effective use the urls in the settings.py to redirect the user automatically after login and logout and registration)
 ## Funny things that happened along the way
