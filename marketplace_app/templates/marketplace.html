@@ -1,4 +1,4 @@
-{% extends "layout.html %}
+{% extends "layout.html" %}
 {% load static %}
 {% block breadcumb_area_section %}
 <!-- ##### Breadcumb Area Start ##### -->
@@ -7,7 +7,7 @@
         <div class="row h-100 align-items-center">
             <div class="col-12">
                 <div class="page-title text-center">
-                    <h2>dresses</h2>
+                    <h2>Marketplace</h2>
                 </div>
             </div>
         </div>
@@ -27,15 +27,80 @@
                     <!-- ##### Single Widget ##### -->
                     <div class="widget catagory mb-50">
                         <!-- Widget Title -->
-                        <h6 class="widget-title mb-30">Catagories</h6>
+                        <h5 class="widget mb-30">Catagories</h5>
 
                         <!--  Catagories  -->
                         <div class="catagories-menu">
                             <ul id="menu-content2" class="menu-content collapse show">
                                 <!-- Single Item -->
-                                <li data-toggle="collapse" data-target="#clothing">
-                                    <a href="#">clothing</a>
-                                    <ul class="sub-menu collapse show" id="clothing">
+                                <li><h6 class="widget-title mb-15">Fashion</h6></li>
+                                <li data-toggle="collapse" data-target="#mens_clothing" class="collapsed">
+                                    <a href="#">Men's Clothing</a>
+                                    <ul class="sub-menu collapse" id="mens_clothing">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#womens_clothing" class="collapsed">
+                                    <a href="#">Women's Clothing</a>
+                                    <ul class="sub-menu collapse" id="womens_clothing">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#kids_clothing" class="collapsed">
+                                    <a href="#">Kid's Clothing</a>
+                                    <ul class="sub-menu collapse" id="kids_clothing">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#luxury" class="collapsed">
+                                    <a href="#">Luxury</a>
+                                    <ul class="sub-menu collapse" id="luxury">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#health_and_beauty" class="collapsed">
+                                    <a href="#">Health &amp; Beauty</a>
+                                    <ul class="sub-menu collapse" id="health_and_beauty">
                                         <li><a href="#">All</a></li>
                                         <li><a href="#">Bodysuits</a></li>
                                         <li><a href="#">Dresses</a></li>
@@ -50,9 +115,74 @@
                                     </ul>
                                 </li>
                                 <!-- Single Item -->
-                                <li data-toggle="collapse" data-target="#shoes" class="collapsed">
-                                    <a href="#">shoes</a>
-                                    <ul class="sub-menu collapse" id="shoes">
+                                <li><h6 class="widget-title mb-15">Home &amp; Living</h6></li>
+                                <li data-toggle="collapse" data-target="#babies_and_kids" class="collapsed">
+                                    <a href="#">Babies &amp; Kids</a>
+                                    <ul class="sub-menu collapse" id="babies_and_kids">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#books_and_stationery" class="collapsed">
+                                    <a href="#">Books &amp; Stationery</a>
+                                    <ul class="sub-menu collapse" id="books_and_stationery">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#home_decor" class="collapsed">
+                                    <a href="#">Home Decor</a>
+                                    <ul class="sub-menu collapse" id="home_decor">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#furniture" class="collapsed">
+                                    <a href="#">Furniture</a>
+                                    <ul class="sub-menu collapse" id="furniture">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#home_appliances" class="collapsed">
+                                    <a href="#">Home Appliances</a>
+                                    <ul class="sub-menu collapse" id="home_appliances">
                                         <li><a href="#">All</a></li>
                                         <li><a href="#">Bodysuits</a></li>
                                         <li><a href="#">Dresses</a></li>
@@ -67,9 +197,258 @@
                                     </ul>
                                 </li>
                                 <!-- Single Item -->
-                                <li data-toggle="collapse" data-target="#accessories" class="collapsed">
-                                    <a href="#">accessories</a>
-                                    <ul class="sub-menu collapse" id="accessories">
+                                <li><h6 class="widget-title mb-15">Vechicles</h6></li>
+                                <li data-toggle="collapse" data-target="#cars" class="collapsed">
+                                    <a href="#">Cars</a>
+                                    <ul class="sub-menu collapse" id="cars">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#motorcycles" class="collapsed">
+                                    <a href="#">Motorcycles</a>
+                                    <ul class="sub-menu collapse" id="motorcycles">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#bicycles" class="collapsed">
+                                    <a href="#">Bicycles</a>
+                                    <ul class="sub-menu collapse" id="bicycles">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#pmds" class="collapsed">
+                                    <a href="#">Pmds</a>
+                                    <ul class="sub-menu collapse" id="pmds">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Single Item -->
+                                <li><h6 class="widget-title mb-15">Hobbies</h6></li>
+                                <li data-toggle="collapse" data-target="#learning_and_enrichment" class="collapsed">
+                                    <a href="#">Learning &amp; Enrichment</a>
+                                    <ul class="sub-menu collapse" id="learning_and_enrichment">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#music_and_media" class="collapsed">
+                                    <a href="#">Music &amp; Media</a>
+                                    <ul class="sub-menu collapse" id="music_and_media">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#photography" class="collapsed">
+                                    <a href="#">Photography</a>
+                                    <ul class="sub-menu collapse" id="photography">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#design_and_craft" class="collapsed">
+                                    <a href="#">Design &amp; Craft</a>
+                                    <ul class="sub-menu collapse" id="design_and_craft">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#sports" class="collapsed">
+                                    <a href="#">Sports</a>
+                                    <ul class="sub-menu collapse" id="sports">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#vintage_and_collectibles" class="collapsed">
+                                    <a href="#">Vintage &amp; Collectibles</a>
+                                    <ul class="sub-menu collapse" id="vintage_and_collectibles">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Single Item -->
+                                <li><h6 class="widget-title mb-15">Games</h6></li>
+                                <li data-toggle="collapse" data-target="#entertainment" class="collapsed">
+                                    <a href="#">Entertainment</a>
+                                    <ul class="sub-menu collapse" id="entertainment">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#toys_and_games" class="collapsed">
+                                    <a href="#">Toys &amp; Games</a>
+                                    <ul class="sub-menu collapse" id="toys_and_games">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Single Item -->
+                                <li><h6 class="widget-title mb-15">Electronics</h6></li>
+                                <li data-toggle="collapse" data-target="#audio" class="collapsed">
+                                    <a href="#">Audio</a>
+                                    <ul class="sub-menu collapse" id="audio">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#computers" class="collapsed">
+                                    <a href="#">Computers</a>
+                                    <ul class="sub-menu collapse" id="computers">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <li data-toggle="collapse" data-target="#mobile_phones_and_tablets" class="collapsed">
+                                    <a href="#">Mobile Phones &amp; Tablets</a>
+                                    <ul class="sub-menu collapse" id="mobile_phones_and_tablets">
+                                        <li><a href="#">All</a></li>
+                                        <li><a href="#">Bodysuits</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Hoodies &amp; Sweats</a></li>
+                                        <li><a href="#">Jackets &amp; Coats</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Pants &amp; Leggings</a></li>
+                                        <li><a href="#">Rompers &amp; Jumpsuits</a></li>
+                                        <li><a href="#">Shirts &amp; Blouses</a></li>
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Sweaters &amp; Knits</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Single Item -->
+                                <li><h6 class="widget-title mb-15">Others</h6></li>
+                                <li data-toggle="collapse" data-target="#everything_else" class="collapsed">
+                                    <a href="#">Everything Else</a>
+                                    <ul class="sub-menu collapse" id="everything_else">
                                         <li><a href="#">All</a></li>
                                         <li><a href="#">Bodysuits</a></li>
                                         <li><a href="#">Dresses</a></li>
@@ -96,48 +475,13 @@
 
                         <div class="widget-desc">
                             <div class="slider-range">
-                                <div data-min="49" data-max="360" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="49" data-value-max="360" data-label-result="Range:">
+                                <div data-min="1" data-max="999" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="1" data-value-max="999" data-label-result="Range:">
                                     <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
                                     <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
                                     <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
                                 </div>
-                                <div class="range-price">Range: $49.00 - $360.00</div>
+                                <div class="range-price">Range: $1.00 - $999.00</div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- ##### Single Widget ##### -->
-                    <div class="widget color mb-50">
-                        <!-- Widget Title 2 -->
-                        <p class="widget-title2 mb-30">Color</p>
-                        <div class="widget-desc">
-                            <ul class="d-flex">
-                                <li><a href="#" class="color1"></a></li>
-                                <li><a href="#" class="color2"></a></li>
-                                <li><a href="#" class="color3"></a></li>
-                                <li><a href="#" class="color4"></a></li>
-                                <li><a href="#" class="color5"></a></li>
-                                <li><a href="#" class="color6"></a></li>
-                                <li><a href="#" class="color7"></a></li>
-                                <li><a href="#" class="color8"></a></li>
-                                <li><a href="#" class="color9"></a></li>
-                                <li><a href="#" class="color10"></a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- ##### Single Widget ##### -->
-                    <div class="widget brands mb-50">
-                        <!-- Widget Title 2 -->
-                        <p class="widget-title2 mb-30">Brands</p>
-                        <div class="widget-desc">
-                            <ul>
-                                <li><a href="#">Asos</a></li>
-                                <li><a href="#">Mango</a></li>
-                                <li><a href="#">River Island</a></li>
-                                <li><a href="#">Topshop</a></li>
-                                <li><a href="#">Zara</a></li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -150,7 +494,7 @@
                             <div class="product-topbar d-flex align-items-center justify-content-between">
                                 <!-- Total Products -->
                                 <div class="total-products">
-                                    <p><span>186</span> products found</p>
+                                    <p><span>{numberofproducts}</span> products found</p>
                                 </div>
                                 <!-- Sorting -->
                                 <div class="product-sorting d-flex">

@@ -1,7 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -13,7 +12,7 @@
     <title>Essence - Fashion Ecommerce Template</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="{% static 'css/core-style.css' %}">
@@ -43,37 +42,63 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li><a href="#">Shop</a>
+                            <li><a href="#">Catagories</a>
                                 <div class="megamenu">
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Women's Collection</li>
-                                        <li><a href="shop.html">Dresses</a></li>
-                                        <li><a href="shop.html">Blouses &amp; Shirts</a></li>
-                                        <li><a href="shop.html">T-shirts</a></li>
-                                        <li><a href="shop.html">Rompers</a></li>
-                                        <li><a href="shop.html">Bras &amp; Panties</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Men's Collection</li>
-                                        <li><a href="shop.html">T-Shirts</a></li>
-                                        <li><a href="shop.html">Polo</a></li>
-                                        <li><a href="shop.html">Shirts</a></li>
-                                        <li><a href="shop.html">Jackets</a></li>
-                                        <li><a href="shop.html">Trench</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Kid's Collection</li>
-                                        <li><a href="shop.html">Dresses</a></li>
-                                        <li><a href="shop.html">Shirts</a></li>
-                                        <li><a href="shop.html">T-shirts</a></li>
-                                        <li><a href="shop.html">Jackets</a></li>
-                                        <li><a href="shop.html">Trench</a></li>
-                                    </ul>
-                                    <div class="single-mega cn-col-4">
-                                        <img src="{% static 'img/bg-img/bg-6.jpg' %}" alt="">
+                                    <div class="row">
+                                        <ul class="single-mega cn-col-3">
+                                            <li class="title">Fashion</li>
+                                            <li><a href="shop.html">Men's</a></li>
+                                            <li><a href="shop.html">Women's</a></li>
+                                            <li><a href="shop.html">Kids'</a></li>
+                                            <li><a href="shop.html">Luxury</a></li>
+                                            <li><a href="shop.html">Health &amp; Beauty</a></li>
+                                        </ul>
+                                        <ul class="single-mega cn-col-3">
+                                            <li class="title">Home &amp; Living</li>
+                                            <li><a href="shop.html">Babies &amp; Kids</a></li>
+                                            <li><a href="shop.html">Books &amp; Stationery</a></li>
+                                            <li><a href="shop.html">Home Decor</a></li>
+                                            <li><a href="shop.html">Furniture</a></li>
+                                            <li><a href="shop.html">Home Appliances</a></li>
+                                        </ul>
+                                        <ul class="single-mega cn-col-3">
+                                            <li class="title">Vechicles</li>
+                                            <li><a href="shop.html">Cars</a></li>
+                                            <li><a href="shop.html">Motorcycles</a></li>
+                                            <li><a href="shop.html">Bicycles</a></li>
+                                            <li><a href="shop.html">Pmds</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="row">
+                                        <ul class="single-mega cn-col-4">
+                                            <li class="title">Hobbies</li>
+                                            <li><a href="shop.html">Learning &amp; Enrichment</a></li>
+                                            <li><a href="shop.html">Music &amp; Media</a></li>
+                                            <li><a href="shop.html">Photography</a></li>
+                                            <li><a href="shop.html">Design &amp; Craft</a></li>
+                                            <li><a href="shop.html">Sports</a></li>
+                                            <li><a href="shop.html">Vintage &amp; Collectibles</a></li>
+                                        </ul>
+                                        <ul class="single-mega cn-col-4">
+                                            <li class="title">Games</li>
+                                            <li><a href="shop.html">Entertainment</a></li>
+                                            <li><a href="shop.html">Toys &amp; Games</a></li>
+                                        </ul>
+                                        <ul class="single-mega cn-col-4">
+                                            <li class="title">Electronics</li>
+                                            <li><a href="shop.html">Audio</a></li>
+                                            <li><a href="shop.html">Computers</a></li>
+                                            <li><a href="shop.html">Mobile Phones &amp; Tablets</a></li>
+                                        </ul>
+                                        <ul class="single-mega cn-col-4">
+                                            <li class="title">Others</li>
+                                            <li><a href="shop.html">Everything Else</a></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </li>
+                            <li><a href="{% url 'marketplace_link' %}">Marketplace</a></li>
+                            <li><a href="shop.html">Sell</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="index.html">Home</a></li>
@@ -86,8 +111,6 @@
                                     <li><a href="contact.html">Contact</a></li>
                                 </ul>
                             </li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>
                     <!-- Nav End -->
