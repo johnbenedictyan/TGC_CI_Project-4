@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block user_form_section %}
-<section class="form-section section-padding-100-0 products-catagories-area clearfix">
+<section class="section-padding-80 clearfix">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -32,8 +32,14 @@
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ registerform|crispy }}
-                    <button class="btn amado-btn" type="submit">Register</button>
+                    <button class="btn essence-btn" type="submit">Register</button>
                 </form>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <p>Already have an Account?</p>
+                <a href="{% url 'login_link' %}"><button class="btn essence-btn">Login Here!</button></a>
             </div>
         </div>
     </div>
@@ -42,17 +48,9 @@
 {% endblock %}
 {% block page_specific_css %}
 <style>
-    #search_link {
-        display:none;
-    }
 </style>
 {% endblock %}
 {% block page_specific_js %}
 <script type="text/javascript">
-    /* global $ */
-    $(function(){
-       $(".link_tag").removeClass("active");
-       $("#register_link_tag").addClass("active");
-    });
 </script>
 {% endblock %}

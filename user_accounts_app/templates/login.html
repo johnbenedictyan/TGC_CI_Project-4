@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block user_form_section %}
-<section class="form-section section-padding-100-0 products-catagories-area clearfix">
+<section class="section-padding-80 clearfix">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -32,13 +32,14 @@
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ loginform|crispy }}
-                    <button class="btn amado-btn" type="submit">Log In</button>
+                    <button class="btn essence-btn" type="submit">Log In</button>
                 </form>
             </div>
         </div>
         <div class="row mt-5">
             <div class="col">
-                <span>New to Smooth Selling?</span><a href="{% url 'login_link' %}"><button class="btn amado-btn">Register Here!</button></a>
+                <p>New to Smooth Selling?</p>
+                <a href="{% url 'register_link' %}"><button class="btn essence-btn">Register Here!</button></a>
             </div>
         </div>
     </div>
@@ -46,17 +47,9 @@
 {% endblock %}
 {% block page_specific_css %}
 <style>
-    #search_link {
-        display:none;
-    }
 </style>
 {% endblock %}
 {% block page_specific_js %}
 <script type="text/javascript">
-    /* global $ */
-    $(function(){
-       $(".link_tag").removeClass("active");
-       $("#login_link_tag").addClass("active");
-    });
 </script>
 {% endblock %}
