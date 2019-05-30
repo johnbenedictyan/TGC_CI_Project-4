@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'posts_app',
     'storages',
     'crispy_forms',
+    'chat_app'
     
 ]
 
@@ -154,7 +155,7 @@ AWS_S3_OBJECT_PARAMETERS = {
    'CacheControl': 'max-age=9460800'
 }
 import env
-AWS_STORAGE_BUCKET_NAME='tgc-ci-project3'
+AWS_STORAGE_BUCKET_NAME='tgc-ci-project4'
 AWS_S3_REGION_NAME='ap-southeast-1'
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_SECRET_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
@@ -162,7 +163,8 @@ AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 STATICFILES_STORAGE = 'custom_storage.StaticStorage'
 STATICFILES_LOCATION = 'static'
 
-MEDIAFILES_LOCATION = "media"
+MEDIAFILES_STORAGE = 'custom_storage.MediaStorage'
+MEDIAFILES_LOCATION = 'media'
 DEFAULT_FILE_LOCATION = ""
 
 AUTH_USER_MODEL = 'user_accounts_app.UserAccount'

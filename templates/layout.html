@@ -96,7 +96,7 @@
                                 </div>
                             </li>
                             <li><a href="{% url 'marketplace_link' %}">Marketplace</a></li>
-                            <li><a href="shop.html">Sell</a></li>
+                            <li><a href="{% url 'listingcreator_link' %}">Sell</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="index.html">Home</a></li>
@@ -126,11 +126,11 @@
                 </div>
                 <!-- Favourite Area -->
                 <div class="favourite-area">
-                    <a href="#"><img src="{% static 'img/core-img/heart.svg' %}" alt=""></a>
+                    <a href="{% url 'favourites_link' %}"><img src="{% static 'img/core-img/heart.svg' %}" alt=""></a>
                 </div>
                 <!-- User Login Info -->
                 <div class="user-login-info">
-                    <a href="{% url 'login_link' %}"><img src="{% static 'img/core-img/user.svg' %}" alt=""></a>
+                    <a href="{% url 'account_details_link' %}"><img src="{% static 'img/core-img/user.svg' %}" alt=""></a>
                 </div>
                 <!-- Cart Area -->
                 <div class="cart-area">
@@ -249,7 +249,7 @@
     {% block regular_page_blog_wrapper_section %}
     {% endblock %}
     
-    {% block user_form_section %}
+    {% block form_section %}
     {% endblock %}
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer_area clearfix">

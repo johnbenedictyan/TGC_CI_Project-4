@@ -1,5 +1,20 @@
 {% extends "layout.html" %}
 {% load static %}
+{% block breadcumb_area_section %}
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb_area bg-img" style="background-image: url({% static 'img/bg-img/breadcumb.jpg' %});">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="page-title text-center">
+                    <h2>Listing Creator</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+{% endblock %}
 {% load crispy_forms_tags %}
 {% block form_section %}
 <section class="section-padding-80 clearfix">
@@ -15,31 +30,31 @@
                     </ul>
                 </div>
                 {% endif %}
-                {% if register_form.errors %}
-                    {% for field in register_form %}
+                {% if listing_creator_form.errors %}
+                    {% for field in listing_creator_form %}
                         {% for error in field.errors %}
                             <div class="alert alert-danger">
                                 <strong>{{ error|escape }}</strong>
                             </div>
                         {% endfor %}
                     {% endfor %}
-                    {% for error in register_form.non_field_errors %}
+                    {% for error in listing_creator_form.non_field_errors %}
                         <div class="alert alert-danger">
                             <strong>{{ error|escape }}</strong>
                         </div>
                     {% endfor %}
                 {% endif %}
+                
+                
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ register_form|crispy }}
-                    <button class="btn essence-btn" type="submit">Register</button>
+                    {{ listing_creator_form|crispy }}
+                    {{ image_form.management_form }}
+                    {% for form in image_form %}
+                        {{ form|crispy }}
+                    {% endfor %}
+                    <button class="btn essence-btn" type="submit">Create</button>
                 </form>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col">
-                <p>Already have an Account?</p>
-                <a href="{% url 'login_link' %}"><button class="btn essence-btn">Login Here!</button></a>
             </div>
         </div>
     </div>

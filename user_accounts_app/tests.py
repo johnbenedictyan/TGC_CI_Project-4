@@ -141,7 +141,7 @@ class UserAuthenticationTest(TestCase):
             'password1':'password123123',
             'password2':'password123123'
         }) 
-        self.assertFormError(response, 'registerform', 'username', 'This username is already taken.')
+        self.assertFormError(response, 'register_form', 'username', 'This username is already taken.')
     
     def testCannotRegisterAccount_PasswordMismatch(self):
         response = self.client.post('/account/register/', {
@@ -152,16 +152,16 @@ class UserAuthenticationTest(TestCase):
             'password1':'password123123',
             'password2':'password123'
         }) 
-        self.assertFormError(response, 'registerform', 'password2', 'The two password fields didn\'t match.')
+        self.assertFormError(response, 'register_form', 'password2', 'The two password fields didn\'t match.')
     
     def testCannotRegisterAccount_MissingData(self):
         response = self.client.post('/account/register/', {}) 
-        self.assertFormError(response, 'registerform', 'username', 'This field is required.')
-        self.assertFormError(response, 'registerform', 'first_name', 'This field is required.')
-        self.assertFormError(response, 'registerform', 'last_name', 'This field is required.')
-        self.assertFormError(response, 'registerform', 'email', 'This field is required.')
-        self.assertFormError(response, 'registerform', 'password1', 'This field is required.')
-        self.assertFormError(response, 'registerform', 'password2', 'This field is required.')
+        self.assertFormError(response, 'register_form', 'username', 'This field is required.')
+        self.assertFormError(response, 'register_form', 'first_name', 'This field is required.')
+        self.assertFormError(response, 'register_form', 'last_name', 'This field is required.')
+        self.assertFormError(response, 'register_form', 'email', 'This field is required.')
+        self.assertFormError(response, 'register_form', 'password1', 'This field is required.')
+        self.assertFormError(response, 'register_form', 'password2', 'This field is required.')
     
     def testCanLogin(self):
         user = UserAccount.objects.create(username='testuser')
@@ -178,7 +178,7 @@ class UserAuthenticationTest(TestCase):
             'username':'ghostuser',
             'password':'password12345'
         }) 
-        self.assertFormError(response, 'loginform', 'username', 'This user does not exist.')
+        self.assertFormError(response, 'login_form', 'username', 'This user does not exist.')
     
     def testCannotLogin_IncorrectPassword(self):
         user = UserAccount.objects.create(username='testuser')
@@ -188,12 +188,12 @@ class UserAuthenticationTest(TestCase):
             'username':'testuser',
             'password':'wrongpassword'
         }) 
-        self.assertFormError(response, 'loginform', 'password', 'Incorrect Password.')
+        self.assertFormError(response, 'login_form', 'password', 'Incorrect Password.')
         
     def testCannotLogin_MissingData(self):
         response = self.client.post('/account/login/', {}) 
-        self.assertFormError(response, 'loginform', 'username', 'This field is required.')
-        self.assertFormError(response, 'loginform', 'password', 'This field is required.')
+        self.assertFormError(response, 'login_form', 'username', 'This field is required.')
+        self.assertFormError(response, 'login_form', 'password', 'This field is required.')
         
     def testCanLogout(self):
         user = UserAccount.objects.create(username='testuser')

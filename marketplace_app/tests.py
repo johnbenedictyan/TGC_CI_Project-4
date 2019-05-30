@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import ListingCategory, Listing, ListingComment
+from .models import ListingCategory, Listing, ListingComment, ListingImage
 from user_accounts_app.models import UserAccount
 
 # Create your tests here.
@@ -61,21 +61,19 @@ class ListingTest(TestCase):
         
         test_lc_1.save()
         test_listing.categories.add(test_lc_1)
-        test_listing.likes.add(ta)
         
-        listing_from_db = Listing.objects.all().get(pk=test_listing.id)
+        tl_from_db = Listing.objects.all().get(pk=test_listing.id)
         
-        self.assertEquals(test_listing.name,listing_from_db.name)
-        self.assertEquals(test_listing.description,listing_from_db.description)
-        self.assertEquals(test_listing.price,listing_from_db.price)
-        self.assertEquals(test_listing.location,listing_from_db.location)
-        self.assertEquals(test_listing.used,listing_from_db.used)
-        self.assertEquals(listing_from_db.categories.count(),1)
-        self.assertEquals(listing_from_db.categories.all()[0].name,"furniture")
-        self.assertEquals(listing_from_db.seller.username,ta.username)
-        self.assertEquals(listing_from_db.seller.password,ta.password)
-        self.assertEquals(listing_from_db.seller.email,ta.email)
-        self.assertEquals(listing_from_db.likes,test_listing.likes)
+        self.assertEquals(test_listing.name,tl_from_db.name)
+        self.assertEquals(test_listing.description,tl_from_db.description)
+        self.assertEquals(test_listing.price,tl_from_db.price)
+        self.assertEquals(test_listing.location,tl_from_db.location)
+        self.assertEquals(test_listing.used,tl_from_db.used)
+        self.assertEquals(tl_from_db.categories.count(),1)
+        self.assertEquals(tl_from_db.categories.all()[0].name,"furniture")
+        self.assertEquals(tl_from_db.seller.username,ta.username)
+        self.assertEquals(tl_from_db.seller.password,ta.password)
+        self.assertEquals(tl_from_db.seller.email,ta.email)
         
     def testListingCanHaveManyCategories(self):
         ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com",first_name="penguin",last_name="rider")
@@ -96,11 +94,11 @@ class ListingTest(TestCase):
         
         test_listing.categories.add(test_lc_1,test_lc_2)
         
-        listing_from_db = Listing.objects.all().get(pk=test_listing.id)
+        tl_from_db = Listing.objects.all().get(pk=test_listing.id)
         
-        self.assertEquals(listing_from_db.categories.count(),2)
-        self.assertEquals(listing_from_db.categories.all()[0].name,"furniture")
-        self.assertEquals(listing_from_db.categories.all()[1].name,"rustic")
+        self.assertEquals(tl_from_db.categories.count(),2)
+        self.assertEquals(tl_from_db.categories.all()[0].name,"furniture")
+        self.assertEquals(tl_from_db.categories.all()[1].name,"rustic")
         
     def testCanDeleteListing(self):
         ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com",first_name="penguin",last_name="rider")
@@ -116,8 +114,8 @@ class ListingTest(TestCase):
         test_listing.categories.add(test_lc_1)
         
         Listing.objects.filter(id=test_listing.id).delete()
-        listing_from_db = list(Listing.objects.all().filter(pk=test_listing.id))
-        self.assertEquals(listing_from_db,[])
+        tl_from_db = list(Listing.objects.all().filter(pk=test_listing.id))
+        self.assertEquals(tl_from_db,[])
     
     def testCanUpdateListingDetails(self):
         ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com",first_name="penguin",last_name="rider")
@@ -136,15 +134,12 @@ class ListingTest(TestCase):
         self.assertEquals(tl_from_db.description,"Not so rustic stool")
         self.assertEquals(tl_from_db.price,14.99)
         self.assertEquals(tl_from_db.location,"Yishun Avenue 2")
-        
-    def testListingCanHaveManyLikes(self):
+    
+    def testCanRemoveCategory(self):
         ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com",first_name="penguin",last_name="rider")
         ta.save()
         
-        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com",first_name="rhino",last_name="rider")
-        ta2.save()
-        
-        test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
+        test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",seller=ta)
         test_listing.save()
         
         test_lc_1 = ListingCategory(name="furniture",description="""
@@ -152,67 +147,23 @@ class ListingTest(TestCase):
         (e.g., chairs, stools, and sofas), eating (tables), and sleeping (e.g., beds). """)
         
         test_lc_1.save()
-        test_listing.categories.add(test_lc_1)
-        test_listing.likes.add(ta)
-        test_listing.likes.add(ta2)
+        
+        test_lc_2 = ListingCategory(name="rustic",description="""
+        simple and often rough in appearance; typical of the countryside """)
+        
+        test_lc_2.save()
+        
+        test_listing.categories.add(test_lc_1,test_lc_2)
         
         tl_from_db = Listing.objects.all().get(pk=test_listing.id)
-        self.assertEquals(tl_from_db.likes.count(),2)
-        self.assertEquals(tl_from_db.likes.all()[0].username,"penguinrider")
-        self.assertEquals(tl_from_db.likes.all()[1].username,"rhinorider")
-        self.assertEquals(ta2.likes.count(),1)
-    
-    def testUser_Can_Have_Many_Likes_On_Different_Listings_From_The_Same_Seller(self):
-        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com",first_name="penguin",last_name="rider")
-        ta.save()
         
-        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com",first_name="rhino",last_name="rider")
-        ta2.save()
+        self.assertEquals(tl_from_db.categories,test_listing.categories)
         
-        test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
-        test_listing.save()
+        test_listing.categories.remove(test_lc_1)
+        new_tl_from_db = Listing.objects.all().get(pk=test_listing.id)
         
-        test_listing2 = Listing(name="Stool",description="Rustic stuhl, not so very rustic.",price=43.99,location="Yishun Avenue 1",used=True,seller=ta)
-        test_listing2.save()
-        
-        test_listing.likes.add(ta2)
-        test_listing2.likes.add(ta2)
-        
-        tl_from_db = Listing.objects.all().get(pk=test_listing.id)
-        tl2_from_db = Listing.objects.all().get(pk=test_listing2.id)
-        self.assertEquals(tl_from_db.likes.count(),1)
-        self.assertEquals(tl2_from_db.likes.count(),1)
-        self.assertEquals(tl_from_db.likes.all()[0].username,ta2.username)
-        self.assertEquals(tl2_from_db.likes.all()[0].username,ta2.username)
-        self.assertEquals(ta2.likes.count(),2)
-        
-    def testUser_Can_Have_Many_Likes_On_Different_Listings_From_Different_Sellers(self):
-        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com",first_name="penguin",last_name="rider")
-        ta.save()
-        
-        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com",first_name="rhino",last_name="rider")
-        ta2.save()
-        
-        ta3 = UserAccount(username="girafferider",password="qwerty",email="qazwsx@qaz.com",first_name="giraffe",last_name="rider")
-        ta3.save()
-        
-        test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
-        test_listing.save()
-        
-        test_listing2 = Listing(name="Stool",description="Rustic stuhl, not so very rustic.",price=43.99,location="Yishun Avenue 1",used=True,seller=ta2)
-        test_listing2.save()
-        
-        test_listing.likes.add(ta3)
-        test_listing2.likes.add(ta3)
-        
-        tl_from_db = Listing.objects.all().get(pk=test_listing.id)
-        tl2_from_db = Listing.objects.all().get(pk=test_listing2.id)
-        
-        self.assertEquals(tl_from_db.likes.count(),1)
-        self.assertEquals(tl2_from_db.likes.count(),1)
-        self.assertEquals(tl_from_db.likes.all()[0].username,ta3.username)
-        self.assertEquals(tl2_from_db.likes.all()[0].username,ta3.username)
-        self.assertEquals(ta3.likes.count(),2)
+        self.assertEquals(new_tl_from_db.categories.count(),1)
+        self.assertEquals(new_tl_from_db.categories.all()[0].name,"rustic")
         
 class ListingCommentTest(TestCase):
     def testCanCreateComent(self):
@@ -394,3 +345,121 @@ class ListingCommentTest(TestCase):
         self.assertEquals(ListingComment.objects.all().filter(user=ta3)[0].listing,test_listing)
         self.assertEquals(ListingComment.objects.all().filter(user=ta3)[1].listing,test_listing2)
         
+class ListingLikesTest(TestCase):
+    def testListingCanBeLiked(self):
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com",first_name="penguin",last_name="rider")
+        ta.save()
+        
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com",first_name="rhino",last_name="rider")
+        ta2.save()
+        
+        test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
+        test_listing.save()
+        
+        test_listing.likes.add(ta2)
+        
+        tl_from_db = Listing.objects.all().get(pk=test_listing.id)
+        
+        self.assertEquals(tl_from_db.likes,test_listing.likes)
+        self.assertEquals(tl_from_db.likes.all()[0].username,"rhinorider")
+        self.assertEquals(ta2.liked_listings.count(),1)
+        
+    def testListingCanBeUnliked(self):
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com",first_name="penguin",last_name="rider")
+        ta.save()
+        
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com",first_name="rhino",last_name="rider")
+        ta2.save()
+        
+        test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
+        test_listing.save()
+        
+        test_listing.likes.add(ta2)
+        
+        tl_from_db = Listing.objects.all().get(pk=test_listing.id)
+        
+        self.assertEquals(tl_from_db.likes,test_listing.likes)
+        self.assertEquals(ta2.liked_listings.count(),1)
+        
+        test_listing.likes.remove(ta2)
+        
+        new_tl_from_db = Listing.objects.all().get(pk=test_listing.id)
+        
+        self.assertEquals(new_tl_from_db.likes.count(),0)
+        self.assertEquals(ta2.liked_listings.count(),0)
+    
+    def testListingCanHaveManyLikes(self):
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com",first_name="penguin",last_name="rider")
+        ta.save()
+        
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com",first_name="rhino",last_name="rider")
+        ta2.save()
+        
+        ta3 = UserAccount(username="girafferider",password="qwerty",email="qazwsx@qaz.com",first_name="giraffe",last_name="rider")
+        ta3.save()
+        
+        test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
+        test_listing.save()
+        
+        test_listing.likes.add(ta2)
+        test_listing.likes.add(ta3)
+        
+        tl_from_db = Listing.objects.all().get(pk=test_listing.id)
+        self.assertEquals(tl_from_db.likes,test_listing.likes)
+        self.assertEquals(tl_from_db.likes.all()[0].username,"rhinorider")
+        self.assertEquals(tl_from_db.likes.all()[1].username,"girafferider")
+        self.assertEquals(ta2.liked_listings.count(),1)
+        self.assertEquals(ta3.liked_listings.count(),1)
+    
+    def testUser_Can_Have_Many_Likes_On_Different_Listings_From_The_Same_Seller(self):
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com",first_name="penguin",last_name="rider")
+        ta.save()
+        
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com",first_name="rhino",last_name="rider")
+        ta2.save()
+        
+        test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
+        test_listing.save()
+        
+        test_listing2 = Listing(name="Stool",description="Rustic stuhl, not so very rustic.",price=43.99,location="Yishun Avenue 1",used=True,seller=ta)
+        test_listing2.save()
+        
+        test_listing.likes.add(ta2)
+        test_listing2.likes.add(ta2)
+        
+        tl_from_db = Listing.objects.all().get(pk=test_listing.id)
+        tl2_from_db = Listing.objects.all().get(pk=test_listing2.id)
+        self.assertEquals(tl_from_db.likes,test_listing.likes)
+        self.assertEquals(tl2_from_db.likes,test_listing2.likes)
+        self.assertEquals(tl_from_db.likes.all()[0].username,ta2.username)
+        self.assertEquals(tl2_from_db.likes.all()[0].username,ta2.username)
+        self.assertEquals(ta2.liked_listings.count(),2)
+        
+    def testUser_Can_Have_Many_Likes_On_Different_Listings_From_Different_Sellers(self):
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com",first_name="penguin",last_name="rider")
+        ta.save()
+        
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com",first_name="rhino",last_name="rider")
+        ta2.save()
+        
+        ta3 = UserAccount(username="girafferider",password="qwerty",email="qazwsx@qaz.com",first_name="giraffe",last_name="rider")
+        ta3.save()
+        
+        test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
+        test_listing.save()
+        
+        test_listing2 = Listing(name="Stool",description="Rustic stuhl, not so very rustic.",price=43.99,location="Yishun Avenue 1",used=True,seller=ta2)
+        test_listing2.save()
+        
+        test_listing.likes.add(ta3)
+        test_listing2.likes.add(ta3)
+        
+        tl_from_db = Listing.objects.all().get(pk=test_listing.id)
+        tl2_from_db = Listing.objects.all().get(pk=test_listing2.id)
+        
+        self.assertEquals(tl_from_db.likes,test_listing.likes)
+        self.assertEquals(tl2_from_db.likes,test_listing2.likes)
+        self.assertEquals(tl_from_db.likes.all()[0].username,ta3.username)
+        self.assertEquals(tl2_from_db.likes.all()[0].username,ta3.username)
+        self.assertEquals(ta3.liked_listings.count(),2)
+

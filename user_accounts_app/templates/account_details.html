@@ -1,59 +1,65 @@
 {% extends "layout.html" %}
 {% load static %}
-{% block account_details_main_content %}
-<section class="form-section section-padding-100-0 products-catagories-area clearfix">
-    <div class="container">
-        <div class="row mb-3">
-            <div class="col-4">
-                <img src="" class="img-thumbnail"></img>
-            </div>
-            <div class="col-8">
-                <div class="row">
-                    <div class="col">
-                        {{current_user_details.username}}
-                    </div>
+{% block regular_page_blog_wrapper_section %}
+<!-- ##### Blog Wrapper Area Start ##### -->
+<div class="single-blog-wrapper">
+    <!-- Single Blog Post Thumb -->
+    <div class="breadcumb_area bg-img" style="background-image: url({% static 'img/bg-img/breadcumb.jpg' %});">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <div class="page-title text-center">
+                    <h2>My Account</h2>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        {{current_user_details.email}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        {{current_user_details.first_name}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        {{current_user_details.last_name}}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <h3 class="">Bio</h3>
-                <blockquote class="blockquote">
-                    <p class="mb-0">{{current_user_details.bio}}</p>
-                </blockquote>
             </div>
         </div>
     </div>
-</section>
-{% endblock %}
-{% block page_specific_css %}
-<style>
-    #search_link {
-        display:none;
-    }
-</style>
-{% endblock %}
-{% block page_specific_js %}
-<script type="text/javascript">
-    /* global $ */
-    $(function(){
-       $(".link_tag").removeClass("active");
-       $("#account_details_tag").addClass("active");
-    });
-</script>
+</div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <div class="regular-page-content-wrapper section-padding-80">
+                    <div class="regular-page-text">
+                        <div class="row mb-3">
+                            <div class="col-4">
+                                <img src="" class="img-thumbnail"></img>
+                            </div>
+                            <div class="col-8">
+                                <div class="row">
+                                    <div class="col">
+                                        {{current_user_details.username}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        {{current_user_details.email}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        {{current_user_details.first_name}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        {{current_user_details.last_name}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h3 class="">Bio</h3>
+                                <blockquote class="blockquote">
+                                    <p class="mb-0">{{current_user_details.bio}}</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Blog Wrapper Area End ##### -->
 {% endblock %}

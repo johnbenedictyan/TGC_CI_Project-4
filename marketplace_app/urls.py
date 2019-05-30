@@ -2,11 +2,13 @@ from django.conf.urls import url
 
 from django.conf import settings # new
 from django.conf.urls.static import static # new
-from .views import marketplace
+from .views import marketplace,favourites,listingcreator,listingeditor
 
 urlpatterns = [
     url(r'^$', marketplace, name="marketplace_link"),
-    
+    url(r'^favourites/$', favourites, name="favourites_link"),
+    url(r'^listing/creator/$', listingcreator, name="listingcreator_link"),
+    url(r'^listing/editor/<listing_id>/$', listingeditor, name="listingeditor_link"),
 ]
 
 if settings.DEBUG: # new

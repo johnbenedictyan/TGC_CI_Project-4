@@ -7,8 +7,9 @@ from .models import UserAccount,Group
 # Create your views here.
 def register(request):
     if request.method=="GET":
+        register_form = RegisterForm()
         return render(request,"register.html",{
-            "registerform":RegisterForm
+            "register_form":register_form
         })
     else:
         dirty_register_form = RegisterForm(request.POST)
@@ -19,14 +20,15 @@ def register(request):
         else:
             messages.error(request,"We are unable to create your account!")
             return render(request,"register.html",{
-                "registerform":dirty_register_form
+                "register_form":dirty_register_form
             })
             
     
 def login(request):
     if request.method=="GET":
+        login_form=LoginForm()
         return render(request,"login.html",{
-            "loginform":LoginForm
+            "login_form":login_form
         })
     else:
         input_username = request.POST.get('username')
@@ -39,9 +41,10 @@ def login(request):
             dirty_login_form = LoginForm(request.POST)
             messages.error(request,"Invalid login credentials")
             return render(request,"login.html",{
-                "loginform":dirty_login_form
+                "login_form":dirty_login_form
             })
-    
+
+@login_required    
 def logout(request):
     auth.logout(request)
     messages.success(request, "You have been logged out")
@@ -50,6 +53,7 @@ def logout(request):
 @login_required       
 def account_details(request):
     current_user_id = request.session.get('_auth_user_id')
+    current_user_id = request.user.id
     current_user_details = UserAccount.objects.all().get(pk=current_user_id)
     return render(request,"account_details.html",{
         "current_user_details":current_user_details
