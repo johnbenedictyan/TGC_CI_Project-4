@@ -1,5 +1,6 @@
 from django.db import models
 from user_accounts_app.models import UserAccount
+from pyuploadcare.dj.models import ImageGroupField
 
 # Create your models here.
 class ListingCategory(models.Model):
@@ -8,9 +9,6 @@ class ListingCategory(models.Model):
     
     def __str__(self):
         return self.name
-        
-class ListingImage(models.Model):
-    image = models.ImageField(upload_to='images')
     
 class Listing(models.Model):
     name = models.CharField(blank=False,max_length = 255)
@@ -21,7 +19,7 @@ class Listing(models.Model):
     used = models.BooleanField(blank=False,default=False)
     seller = models.ForeignKey(UserAccount,on_delete=models.CASCADE, related_name="listings")
     likes = models.ManyToManyField(UserAccount, related_name="liked_listings")
-    images = models.ManyToManyField(ListingImage,related_name="listings")
+    listing_images = ImageGroupField()
     def __str__(self):
         return self.name    
         

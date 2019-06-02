@@ -69,3 +69,20 @@
 <script type="text/javascript">
 </script>
 {% endblock %}
+{% block page_specific_head_section %}
+<script>
+  UPLOADCARE_PUBLIC_KEY = 'c1c0ea35a4b3421770fa';
+  UPLOADCARE_EFFECTS = 'crop';
+  UPLOADCARE_IMAGE_SHRINK = '500x500';
+  UPLOADCARE_IMAGES_ONLY = true;
+  UPLOADCARE_PREVIEW_STEP = true;
+</script>
+
+<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+<script src="https://ucarecdn.com/libs/widget-tab-effects/1.x/uploadcare.tab-effects.js"></script>
+
+<script>
+  uploadcare.registerTab('preview', uploadcareTabEffects)
+</script>
+{{form.media}}
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.test import TestCase
 from .models import ListingCategory, Listing, ListingComment, ListingImage
 from user_accounts_app.models import UserAccount
-
+from django.contrib.messages import get_messages
 # Create your tests here.
 # Test Cases needed:
 # 1. A person can create a listing DONE
@@ -463,3 +463,69 @@ class ListingLikesTest(TestCase):
         self.assertEquals(tl2_from_db.likes.all()[0].username,ta3.username)
         self.assertEquals(ta3.liked_listings.count(),2)
 
+class MarketplaceViewsTest(TestCase):
+    def setUp(self):
+        ta = UserAccount(username="penguinrider",password="password123",email="asd@asd.com",first_name="penguin",last_name="rider")
+        ta.set_password('password123')
+        ta.save()
+        
+        ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com",first_name="rhino",last_name="rider")
+        ta2.set_password('asd123')
+        ta2.save()
+        
+        test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
+        test_listing.save()
+        
+        test_listing = Listing.objects.create(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
+        
+    def testCanLoadMarketPlacePage(self):
+        response = self.client.get('/marketplace/')
+        
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'marketplace.html')
+    
+    def testCanLoadFavouritesPage(self):
+        response = self.client.get('/marketplace/favourites/')
+        self.assertEqual(response.status_code, 302)
+        
+        self.client.login(username='penguinrider',password='password123')
+        
+        response_postlogin = self.client.get('/marketplace/favourites/')
+        
+        self.assertEqual(response_postlogin.status_code, 200)
+        self.assertTemplateUsed(response_postlogin, 'favourites.html')
+    
+    def testCanLoadListingCreatorPage(self):
+        response = self.client.get('/marketplace/listing/creator/')
+        self.assertEqual(response.status_code, 302)
+        
+        self.client.login(username='penguinrider',password='password123')
+        
+        response_postlogin = self.client.get('/marketplace/listing/creator/')
+        
+        self.assertEqual(response_postlogin.status_code, 200)
+        self.assertTemplateUsed(response_postlogin, 'listing-creator.html')
+    
+    def testCanLoadListingEditorPage(self):
+        response = self.client.get('/marketplace/listing/editor/1')
+        self.assertEqual(response.status_code, 302)
+        
+        self.client.login(username='penguinrider',password='password123')
+        
+        response_postlogin = self.client.get('/marketplace/listing/editor/1')
+        
+        self.assertEqual(response_postlogin.status_code, 200)
+        self.assertTemplateUsed(response_postlogin, 'listing-editor.html')
+        
+    def testCannotLoadListingEditorPage_UserIsNotTheSeller(self):
+        response = self.client.get('/marketplace/listing/editor/1')
+        self.assertEqual(response.status_code, 302)
+        
+        self.client.login(username='rhinorider',password='asd123')
+        
+        response_postlogin = self.client.get('/marketplace/listing/editor/1')
+        
+        self.assertEqual(response_postlogin.status_code, 302)
+        messages = list(get_messages(response_postlogin.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), "You are not the seller of this listing!")

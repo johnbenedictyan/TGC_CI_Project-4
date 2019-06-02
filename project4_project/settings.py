@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import dj_database_url
 import sys
+# Comment this import env out when deploying to heroku
+import env
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -44,8 +47,8 @@ INSTALLED_APPS = [
     'posts_app',
     'storages',
     'crispy_forms',
-    'chat_app'
-    
+    'chat_app',
+    'pyuploadcare.dj'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap'
@@ -154,7 +157,7 @@ AWS_S3_OBJECT_PARAMETERS = {
    'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
    'CacheControl': 'max-age=9460800'
 }
-import env
+
 AWS_STORAGE_BUCKET_NAME='tgc-ci-project4'
 AWS_S3_REGION_NAME='ap-southeast-1'
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_SECRET_KEY_ID")
@@ -168,6 +171,13 @@ MEDIAFILES_LOCATION = 'media'
 DEFAULT_FILE_LOCATION = ""
 
 AUTH_USER_MODEL = 'user_accounts_app.UserAccount'
+
+UPLOADCARE = {
+    'pub_key': os.environ.get("UPLOADCARE_PUBLIC_KEY"),
+    'secret': os.environ.get("UPLOADCARE_SECRET_KEY"),
+    'widget_version': '2.8.1',
+    'widget_build': 'min',  ## without jQuery
+}
 
 LOGIN_REDIRECT_URL="/"
 LOGIN_URL="/account/login/"

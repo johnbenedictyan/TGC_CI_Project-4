@@ -8,7 +8,7 @@ urlpatterns = [
     url(r'^$', marketplace, name="marketplace_link"),
     url(r'^favourites/$', favourites, name="favourites_link"),
     url(r'^listing/creator/$', listingcreator, name="listingcreator_link"),
-    url(r'^listing/editor/<listing_id>/$', listingeditor, name="listingeditor_link"),
+    url(r'^listing/editor/(?P<listing_id>\d+)$', listingeditor, name="listingeditor_link"),
 ]
 
 if settings.DEBUG: # new
