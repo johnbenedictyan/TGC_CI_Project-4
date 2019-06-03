@@ -14,7 +14,7 @@ import os
 import dj_database_url
 import sys
 # Comment this import env out when deploying to heroku
-# import env
+import env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'storages',
     'crispy_forms',
     'chat_app',
-    'pyuploadcare.dj'
+    'pyuploadcare'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap'
@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'project4_project.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+DATABASES = {'default': dj_database_url.parse("postgres://ctmoccwssxepbq:11171247672eef6536e74b14240115bff3e0cf2b9cb7adcf57d390241e4ffadd@ec2-54-83-192-245.compute-1.amazonaws.com:5432/da7ba3gpl4nojl")}
 if 'test' in sys.argv:
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
