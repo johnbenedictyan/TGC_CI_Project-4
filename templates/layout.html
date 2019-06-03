@@ -21,6 +21,12 @@
     {% endblock %}
     {% block page_specific_head_section %}
     {% endblock %}
+    <style>
+        .megamenu{
+            max-height:50vh;
+            overflow:scroll;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,50 +55,50 @@
                                     <div class="row">
                                         <ul class="single-mega cn-col-3">
                                             <li class="title">Fashion</li>
-                                            <li><a href="shop.html">Men's</a></li>
-                                            <li><a href="shop.html">Women's</a></li>
-                                            <li><a href="shop.html">Kids'</a></li>
-                                            <li><a href="shop.html">Luxury</a></li>
-                                            <li><a href="shop.html">Health &amp; Beauty</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=1 %}">Men's</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=2 %}">Women's</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=3 %}">Kids'</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=4 %}">Luxury</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=5 %}">Health &amp; Beauty</a></li>
                                         </ul>
                                         <ul class="single-mega cn-col-3">
                                             <li class="title">Home &amp; Living</li>
-                                            <li><a href="shop.html">Babies &amp; Kids</a></li>
-                                            <li><a href="shop.html">Books &amp; Stationery</a></li>
-                                            <li><a href="shop.html">Furniture</a></li>
-                                            <li><a href="shop.html">Home Appliances</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=6 %}">Babies &amp; Kids</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=7 %}">Books &amp; Stationery</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=8 %}">Furniture</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=9 %}">Home Appliances</a></li>
                                         </ul>
                                         <ul class="single-mega cn-col-3">
                                             <li class="title">Vechicles</li>
-                                            <li><a href="shop.html">Cars</a></li>
-                                            <li><a href="shop.html">Motorcycles</a></li>
-                                            <li><a href="shop.html">Bicycles</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=10 %}">Cars</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=11 %}">Motorcycles</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=12 %}">Bicycles</a></li>
                                         </ul>
                                     </div>
                                     <div class="row">
                                         <ul class="single-mega cn-col-4">
                                             <li class="title">Hobbies</li>
-                                            <li><a href="shop.html">Learning &amp; Enrichment</a></li>
-                                            <li><a href="shop.html">Music &amp; Media</a></li>
-                                            <li><a href="shop.html">Photography</a></li>
-                                            <li><a href="shop.html">Design &amp; Craft</a></li>
-                                            <li><a href="shop.html">Sports</a></li>
-                                            <li><a href="shop.html">Vintage &amp; Collectibles</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=13 %}">Learning &amp; Enrichment</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=14 %}">Music &amp; Media</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=15 %}">Photography</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=16 %}">Design &amp; Craft</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=17 %}">Sports</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=18 %}">Vintage &amp; Collectibles</a></li>
                                         </ul>
                                         <ul class="single-mega cn-col-4">
                                             <li class="title">Games</li>
-                                            <li><a href="shop.html">Entertainment</a></li>
-                                            <li><a href="shop.html">Toys &amp; Games</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=19 %}">Entertainment</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=20 %}">Toys &amp; Games</a></li>
                                         </ul>
                                         <ul class="single-mega cn-col-4">
                                             <li class="title">Electronics</li>
-                                            <li><a href="shop.html">Audio</a></li>
-                                            <li><a href="shop.html">Computers</a></li>
-                                            <li><a href="shop.html">Mobile Phones &amp; Tablets</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=21 %}">Audio</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=22 %}">Computers</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=23 %}">Mobile Phones &amp; Tablets</a></li>
                                         </ul>
                                         <ul class="single-mega cn-col-4">
                                             <li class="title">Others</li>
-                                            <li><a href="shop.html">Everything Else</a></li>
+                                            <li><a href="{% url 'categories_link' category_id=24 %}">Everything Else</a></li>
                                         </ul>
                                     </div>
                                 </div>

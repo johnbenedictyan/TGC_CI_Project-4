@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import ListingCategory, Listing, ListingComment, ListingImage
+from .models import ListingCategory, Listing, ListingComment
 from user_accounts_app.models import UserAccount
 from django.contrib.messages import get_messages
 # Create your tests here.
@@ -472,9 +472,6 @@ class MarketplaceViewsTest(TestCase):
         ta2 = UserAccount(username="rhinorider",password="asd123",email="qwe@qwe.com",first_name="rhino",last_name="rider")
         ta2.set_password('asd123')
         ta2.save()
-        
-        test_listing = Listing(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
-        test_listing.save()
         
         test_listing = Listing.objects.create(name="Bench",description="Rustic Bench, very rustic.",price=53.99,location="Bedok Avenue 1",used=True,seller=ta)
         

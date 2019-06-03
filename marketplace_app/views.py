@@ -10,6 +10,9 @@ from django.contrib.auth.decorators import login_required
 def marketplace(request):
     return render(request,"marketplace.html")
 
+def categories(request,category_id):
+    return render(request,"categories.html")
+    
 @login_required    
 def favourites(request):
     return render(request,"favourites.html")
@@ -29,7 +32,7 @@ def listingcreator(request):
             return redirect("home_page_link")
         else:
             messages.error(request,"We are unable to create this listing!")
-            return render(request,"listing.html",{
+            return render(request,"listing-creator.html",{
                 "listing_creator_form":dirty_listing_creator_form,
             }) 
         

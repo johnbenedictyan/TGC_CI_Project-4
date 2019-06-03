@@ -14,7 +14,7 @@ import os
 import dj_database_url
 import sys
 # Comment this import env out when deploying to heroku
-import env
+# import env
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -95,7 +95,7 @@ WSGI_APPLICATION = 'project4_project.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-DATABASES = {'default': dj_database_url.parse("postgres://pbqjcgypbjxtsv:154279b8b1b68f18c4b5338076ae3829d67ccd97d382b32cea417e3ef2c19714@ec2-75-101-147-226.compute-1.amazonaws.com:5432/deleru5t9cnkov")}
+DATABASES = {'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 if 'test' in sys.argv:
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
