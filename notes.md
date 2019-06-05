@@ -37,13 +37,13 @@ no field
 
 
 Things to do
-1. Get the editor to work
-2. Get all of the listings to work
 3. Get the filtering on the marketplace to work
 4. Get stripe to work
 5. Get favourites to work
 6. 
 
+Things DONE:
+1. listing creation deletion and editing
 
 Things that dont work:
 2. Why the categories choice field is not being selected in the editor.

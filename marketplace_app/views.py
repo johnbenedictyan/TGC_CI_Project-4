@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
+from django.http import JsonResponse
 from django.contrib import messages
 from django.forms import modelformset_factory
 from .forms import ListingForm
@@ -30,9 +31,34 @@ def my_listings(request):
         "all_listings":all_listings,
         "number_of_listings_found":number_of_listings_found
     })
+
+@login_required
+def favourite(request,listing_id):
+    current_listing = Listing.objects.get(pk=listing_id)
+    current_user = request.user
+    if current_user in current_listing.likes.all():
+        try:
+            current_listing.likes.remove(current_user)
+            response = "The listing has been successfully unliked"
+        except:
+            response = "Something went wrong!"
+            
+        return JsonResponse({
+            "response":response
+        }, status=204)
+    else:
+        try:
+            current_listing.likes.add(current_user)
+            response = "The listing has been successfully liked"
+        except:
+            response = "Something went wrong!"
+            
+        return JsonResponse({
+            "response":response
+        }, status=204)
     
 @login_required    
-def favourites(request):
+def favourite_listings(request):
     return render(request,"favourites.html")
 
 @login_required    
@@ -63,7 +89,8 @@ def listingeditor(request,listing_id):
         if request.method=="GET":
             listing_editor_form = ListingForm(instance=listing_from_db)
             return render(request,"listing-editor.html",{
-                "listing_editor_form":listing_editor_form
+                "listing_editor_form":listing_editor_form,
+                "current_listing":listing_from_db
             })
         else:
             dirty_listing_editor_form = ListingForm(request.POST,instance=listing_from_db)
@@ -78,3 +105,9 @@ def listingeditor(request,listing_id):
     else:
             messages.error(request,"You are not the seller of this listing!")
             return redirect("marketplace_link")
+            
+@login_required
+def delete_listing(request,listing_id):
+    Listing.objects.filter(pk=listing_id).delete()
+    messages.success(request, "The listing has been successfully deleted!")
+    return redirect("my_listings_link")
