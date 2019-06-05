@@ -240,6 +240,24 @@ img {
     color: #ffffff;
     background-color: #dc0345; }
 
+.essence-btn-danger {
+  display: inline-block;
+  min-width: 170px;
+  height: 50px;
+  color: #ffffff;
+  border: none;
+  border-radius: 0;
+  padding: 0 40px;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 50px;
+  background-color: #ff0315;
+  letter-spacing: 1.5px;
+  font-weight: 600; }
+  .essence-btn:hover, .essence-btn:focus {
+    color: #ffffff;
+    background-color: #0345dc; }
+    
 /* :: 4.0 Header Area CSS */
 .header_area {
   position: fixed;

@@ -53,4 +53,11 @@
 </section>
 <!-- ##### Single Product Details Area End ##### -->
 {% endblock %}
- 
+{% block page_specific_head_section %}
+<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+<script src="https://ucarecdn.com/libs/widget-tab-effects/1.x/uploadcare.tab-effects.js"></script>
+<script>
+  uploadcare.registerTab('preview', uploadcareTabEffects)
+</script>
+{{form.media}}
+{% endblock %}

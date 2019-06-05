@@ -311,6 +311,27 @@ img {
     }
 }
 
+.essence-btn-danger {
+    display: inline-block;
+    min-width: 170px;
+    height: 50px;
+    color: $white-color;
+    border: none;
+    border-radius: 0;
+    padding: 0 40px;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 50px;
+    background-color: $bg-default-inverted;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    &:hover,
+    &:focus {
+        color: $white-color;
+        background-color: $hover-color-inverted;
+    }
+}
+
 /* :: 4.0 Header Area CSS */
 
 .header_area {

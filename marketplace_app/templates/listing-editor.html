@@ -48,6 +48,7 @@
                     {% csrf_token %}
                     {{ listing_editor_form|crispy }}
                     <button class="btn essence-btn" type="submit">Update</button>
+                    <button class="btn essence-btn-danger" type="submit">Delete</button>
                 </form>
             </div>
         </div>
@@ -57,9 +58,20 @@
 {% endblock %}
 {% block page_specific_css %}
 <style>
+#div_id_categories div{
+    min-height:40px;
+}
 </style>
 {% endblock %}
 {% block page_specific_js %}
 <script type="text/javascript">
 </script>
+{% endblock %}
+{% block page_specific_head_section %}
+<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+<script src="https://ucarecdn.com/libs/widget-tab-effects/1.x/uploadcare.tab-effects.js"></script>
+<script>
+  uploadcare.registerTab('preview', uploadcareTabEffects)
+</script>
+{{form.media}}
 {% endblock %}
