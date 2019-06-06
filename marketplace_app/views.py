@@ -4,13 +4,14 @@ from django.contrib import messages
 from django.forms import modelformset_factory
 from .forms import ListingForm
 from project4_project import settings
-from .models import Listing
+from .models import Listing, ListingCategory
 from django.contrib.auth.decorators import login_required
 from user_accounts_app.models import UserAccount
 
 # Create your views here.
 def marketplace(request):
-    all_listings = Listing.objects.all()
+    current_user = request.user
+    all_listings = Listing.objects.all().exclude(seller=current_user)
     number_of_listings_found = all_listings.count()
     return render(request,"marketplace.html",{
         "all_listings":all_listings,
@@ -18,10 +19,21 @@ def marketplace(request):
         })
 
 def categories(request,category_id):
-    return render(request,"categories.html")
+    current_user = request.user
+    requested_category = ListingCategory.objects.get(pk=category_id)
+    all_listings_in_this_category = Listing.objects.filter(categories=requested_category).exclude(seller=current_user)
+    number_of_listings_found = all_listings_in_this_category.count()
+    return render(request,"categories.html",{
+        "requested_category":requested_category,
+        "all_listings_in_this_category":all_listings_in_this_category,
+        "number_of_listings_found":number_of_listings_found
+    })
 
 def single_listing(request,listing_id):
-    return render(request,"single-product-details.html")
+    requested_listing = Listing.objects.get(pk=listing_id)
+    return render(request,"single-product-details.html",{
+        "requested_listing":requested_listing
+    })
 
 @login_required
 def my_listings(request):
@@ -59,7 +71,11 @@ def favourite(request,listing_id):
     
 @login_required    
 def favourite_listings(request):
-    return render(request,"favourites.html")
+    current_user = request.user
+    favourite_listings = Listing.objects.filter(likes=current_user)
+    return render(request,"favourites.html",{
+        "favourite_listings":favourite_listings
+    })
 
 @login_required    
 def listingcreator(request):

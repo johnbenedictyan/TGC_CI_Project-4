@@ -105,9 +105,20 @@
             min: min,
             max: max,
             values: [value_min, value_max],
-            slide: function (event, ui) {
+            slide: function(event, ui) {
                 var result = label_result + " " + unit + ui.values[0] + ' - ' + unit + ui.values[1];
-                console.log(t);
+                let min_price = parseFloat(Math.ceil(ui.values[0]), 10),
+                    max_price = parseFloat(Math.floor(ui.values[1]), 10);
+                $(".single-product-wrapper").each(function() {
+                    let listing_price = parseFloat($(this).find(".product-price").text().slice(1));
+                    if (listing_price <= min_price || listing_price >= max_price) {
+                        $(this).parent().hide(500);
+                    }
+                    else{
+                        $(this).parent().show(500);
+                    }
+                });
+                // console.log(t);
                 t.closest('.slider-range').find('.range-price').html(result);
             }
         });
