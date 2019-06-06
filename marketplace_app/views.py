@@ -65,37 +65,43 @@ search_dict = {
 # Create your views here.
 def marketplace(request,search_terms=None):
     current_user = request.user
+    liked_listing_list = list(Listing.objects.filter(likes=current_user).exclude(seller=current_user).values_list('id', flat=True))
     if search_terms:
         if request.GET.get("sort_by"):
             if(request.GET.get("sort_by")=="new"):
                 data = search_dict["sort_by_new"](current_user,search_terms)
                 return render(request,"marketplace.html",{
                     "all_listings":data[0],
-                    "number_of_listings_found":data[1]
+                    "number_of_listings_found":data[1],
+                    "liked_listing_list":liked_listing_list
                     })
             elif(request.GET.get("sort_by")=="price_high_to_low"):
                 data = search_dict["sort_by_price_high_to_low"](current_user,search_terms)
                 return render(request,"marketplace.html",{
                     "all_listings":data[0],
-                    "number_of_listings_found":data[1]
+                    "number_of_listings_found":data[1],
+                    "liked_listing_list":liked_listing_list
                     })
             elif(request.GET.get("sort_by")=="price_low_to_high"):
                 data = search_dict["sort_by_price_low_to_high"](current_user,search_terms)
                 return render(request,"marketplace.html",{
                     "all_listings":data[0],
-                    "number_of_listings_found":data[1]
+                    "number_of_listings_found":data[1],
+                    "liked_listing_list":liked_listing_list
                     })
             else:
                 data = search_dict["sort_by_highest_rated"](current_user,search_terms)
                 return render(request,"marketplace.html",{
                     "all_listings":data[0],
-                    "number_of_listings_found":data[1]
+                    "number_of_listings_found":data[1],
+                    "liked_listing_list":liked_listing_list
                     })
         else:
             data = search_dict["search_marketplace"](current_user,search_terms)
             return render(request,"marketplace.html",{
                 "all_listings":data[0],
-                "number_of_listings_found":data[1]
+                "number_of_listings_found":data[1],
+                "liked_listing_list":liked_listing_list
                 })
     else:
         if request.GET.get("sort_by"):
@@ -103,31 +109,36 @@ def marketplace(request,search_terms=None):
                 data = search_dict["sort_by_new"](current_user)
                 return render(request,"marketplace.html",{
                     "all_listings":data[0],
-                    "number_of_listings_found":data[1]
+                    "number_of_listings_found":data[1],
+                    "liked_listing_list":liked_listing_list
                     })
             elif(request.GET.get("sort_by")=="price_high_to_low"):
                 data = search_dict["sort_by_price_high_to_low"](current_user)
                 return render(request,"marketplace.html",{
                     "all_listings":data[0],
-                    "number_of_listings_found":data[1]
+                    "number_of_listings_found":data[1],
+                    "liked_listing_list":liked_listing_list
                     })
             elif(request.GET.get("sort_by")=="price_low_to_high"):
                 data = search_dict["sort_by_price_low_to_high"](current_user)
                 return render(request,"marketplace.html",{
                     "all_listings":data[0],
-                    "number_of_listings_found":data[1]
+                    "number_of_listings_found":data[1],
+                    "liked_listing_list":liked_listing_list
                     })
             else:
                 data = search_dict["sort_by_highest_rated"](current_user)
                 return render(request,"marketplace.html",{
                     "all_listings":data[0],
-                    "number_of_listings_found":data[1]
+                    "number_of_listings_found":data[1],
+                    "liked_listing_list":liked_listing_list
                     })
         else:
             data = search_dict["search_marketplace"](current_user)
             return render(request,"marketplace.html",{
                 "all_listings":data[0],
-                "number_of_listings_found":data[1]
+                "number_of_listings_found":data[1],
+                "liked_listing_list":liked_listing_list
                 })
 
 def categories(request,category_id):
@@ -135,10 +146,12 @@ def categories(request,category_id):
     requested_category = ListingCategory.objects.get(pk=category_id)
     all_listings_in_this_category = Listing.objects.filter(categories=requested_category).exclude(seller=current_user)
     number_of_listings_found = all_listings_in_this_category.count()
+    liked_listing_list = list(Listing.objects.filter(likes=current_user).exclude(seller=current_user).values_list('id', flat=True))
     return render(request,"categories.html",{
         "requested_category":requested_category,
         "all_listings_in_this_category":all_listings_in_this_category,
-        "number_of_listings_found":number_of_listings_found
+        "number_of_listings_found":number_of_listings_found,
+        "liked_listing_list":liked_listing_list
     })
 
 def single_listing(request,listing_id):

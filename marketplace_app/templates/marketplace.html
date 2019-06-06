@@ -462,9 +462,15 @@
                                     <img src="{{ i.listing_photo.cdn_url }}-/resize/210x286/" alt="">
                         
                                     <!-- Favourite -->
+                                    {% if i.id in liked_listing_list %}
+                                    <div class="product-favourite" data-listing-id="{{i.id}}">
+                                        <a href="#" class="favme fa fa-heart like_icon active"></a>
+                                    </div>
+                                    {% else %}
                                     <div class="product-favourite" data-listing-id="{{i.id}}">
                                         <a href="#" class="favme fa fa-heart like_icon"></a>
                                     </div>
+                                    {% endif %}
                                 </div>
                         
                                 <!-- Product Description -->
@@ -535,8 +541,8 @@
         });
         $(".product-favourite").on("click",".like_icon",function(){
             let base_url = window.location.href;
-            let listing_id = $(this).data("listing-id");
-            axios.get(base_url+"listing/single/"+listing_id+"/favourite/", {
+            let listing_id = $(this).parent().data("listing-id");
+            axios.get(base_url+"listing/single/"+listing_id.toString()+"/favourite/", {
                     params: {
                         listing_id:listing_id
                     }
