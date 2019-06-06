@@ -47,4 +47,6 @@ Things DONE:
 
 Things that dont work:
 2. Why the categories choice field is not being selected in the editor.
-3. 
+3. Try to get the time to be converted from utc to the user's local time zone
+4. Filter by the 4 nice select things dont work, cant get the form to submit.
+5. Thing about a custom url redirect to stack the search terms with the categories (https://stackoverflow.com/questions/3765887/add-request-get-variable-using-django-shortcuts-redirect)

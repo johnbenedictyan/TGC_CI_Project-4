@@ -2,6 +2,7 @@ from django.db import models
 from user_accounts_app.models import UserAccount
 from pyuploadcare.dj.models import ImageGroupField,ImageField
 from project4_project import settings
+
 # Create your models here.
 class ListingCategory(models.Model):
     name = models.CharField(blank=False,max_length = 255)
@@ -20,6 +21,7 @@ class Listing(models.Model):
     seller = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE, related_name="listings")
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="liked_listings")
     listing_photo = ImageField()
+    date_time_listed = models.DateTimeField(auto_now_add=True, blank=True)
     
     def __str__(self):
         return self.name    

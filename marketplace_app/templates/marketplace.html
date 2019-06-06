@@ -325,12 +325,12 @@
                                 <!-- Sorting -->
                                 <div class="product-sorting d-flex">
                                     <p>Sort by:</p>
-                                    <form action="#" method="get">
-                                        <select name="select" id="sortByselect">
-                                            <option value="value">Highest Rated</option>
-                                            <option value="value">Newest</option>
-                                            <option value="value">Price: $$ - $</option>
-                                            <option value="value">Price: $ - $$</option>
+                                    <form method="GET" id="sort_by_form">
+                                        <select name="sort_by" id="sortByselect">
+                                            <option value="highest_rated">Highest Rated</option>
+                                            <option value="new">Newest</option>
+                                            <option value="price_high_to_low">Price: $$ - $</option>
+                                            <option value="price_low_to_high">Price: $ - $$</option>
                                         </select>
                                         <input type="submit" class="d-none" value="">
                                     </form>
@@ -436,6 +436,7 @@
                                 <!-- Product Description -->
                                 <div class="product-description">
                                     <span>topshop</span>
+                                    <span class="float-right">ASD</span>
                                     <a href="single-product-details.html">
                                         <h6>Knot Front Mini Dress</h6>
                                     </a>
@@ -461,14 +462,21 @@
                                     <img src="{{ i.listing_photo.cdn_url }}-/resize/210x286/" alt="">
                         
                                     <!-- Favourite -->
-                                    <div class="product-favourite">
-                                        <a href="#" class="favme fa fa-heart"></a>
+                                    <div class="product-favourite" data-listing-id="{{i.id}}">
+                                        <a href="#" class="favme fa fa-heart like_icon"></a>
                                     </div>
                                 </div>
                         
                                 <!-- Product Description -->
                                 <div class="product-description">
-                                    <span>{{i.seller}}</span>
+                                    <div class="row mb-2">
+                                        <div class="col-5 pr-0 text-left">
+                                            <span>{{i.seller}}</span>
+                                        </div>
+                                        <div class="col-7 pl-0 text-right">
+                                            <span>{{i.date_time_listed}}</span>
+                                        </div>
+                                    </div>
                                     <a href="single-product-details.html">
                                         <h6>{{i.name}}</h6>
                                     </a>
@@ -520,7 +528,26 @@
 {% block page_specific_js %}
 <script type="text/javascript">
 /* global $ */
+/* global axios */
     $(function(){
+        $(".nice-select").children().on("change",function(){
+            ("#sort_by_form").submit();
+        });
+        $(".product-favourite").on("click",".like_icon",function(){
+            let base_url = window.location.href;
+            let listing_id = $(this).data("listing-id");
+            axios.get(base_url+"listing/single/"+listing_id+"/favourite/", {
+                    params: {
+                        listing_id:listing_id
+                    }
+                })
+                .then(function(response) {
+                    console.log(response);
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+            });
     });
 </script>
 {% endblock %}

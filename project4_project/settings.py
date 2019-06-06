@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'storages',
     'crispy_forms',
     'chat_app',
-    'pyuploadcare'
+    'pyuploadcare',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap'
@@ -61,8 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
-
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'project4_project.urls'

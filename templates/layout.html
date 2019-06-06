@@ -1,4 +1,5 @@
 {% load static %}
+{% load tz %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,8 +129,8 @@
             <div class="header-meta d-flex clearfix justify-content-end">
                 <!-- Search Area -->
                 <div class="search-area">
-                    <form action="#" method="post">
-                        <input type="search" name="search" id="headerSearch" placeholder="Type for search">
+                    <form method="get">
+                        <input type="search" name="search-terms" id="headerSearch" placeholder="Type for search">
                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
@@ -140,6 +141,10 @@
                 <!-- User Login Info -->
                 <div class="user-login-info">
                     <a href="{% url 'account_details_link' %}"><img src="{% static 'img/core-img/user.svg' %}" alt=""></a>
+                </div>
+                <!-- User Logout Info -->
+                <div class="user-logout-info">
+                    <a href="{% url 'logout_link' %}"><img src="{% static 'img/core-img/logout.svg' %}" alt=""></a>
                 </div>
                 <!-- Cart Area -->
                 <div class="cart-area">
