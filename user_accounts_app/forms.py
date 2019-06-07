@@ -2,6 +2,7 @@ from django import forms
 from .models import UserAccount
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import auth
+from pyuploadcare.dj.forms import FileWidget, ImageField
 
 class LoginForm(forms.Form):
     username = forms.CharField(required=True)
@@ -21,9 +22,15 @@ class LoginForm(forms.Form):
         return input_password
         
 class RegisterForm(UserCreationForm):
+    profile_picture = ImageField(widget=FileWidget(attrs={
+        'data-public-key':'c1c0ea35a4b3421770fa',
+        'data-images-only':'True',
+        'data-preview-step':'True',
+    }))
+    
     class Meta:
         model = UserAccount
-        fields = ('username','first_name','last_name','email','password1','password2',)
+        fields = ('username','first_name','last_name','email','password1','password2','profile_picture')
         
     def clean_username(self):
         requested_username = self.cleaned_data.get('username')

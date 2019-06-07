@@ -460,7 +460,12 @@
                                 <!-- Product Image -->
                                 <div class="product-img">
                                     <img src="{{ i.listing_photo.cdn_url }}-/resize/210x286/" alt="">
-                        
+                                    {% if i.sold == True %}
+                                    <!-- Product Badge -->
+                                    <div class="product-badge offer-badge">
+                                        <span>Listing Sold</span>
+                                    </div>
+                                    {% endif %}
                                     <!-- Favourite -->
                                     {% if i.id in liked_listing_list %}
                                     <div class="product-favourite" data-listing-id="{{i.id}}">

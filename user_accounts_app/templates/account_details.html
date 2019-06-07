@@ -22,27 +22,31 @@
                     <div class="regular-page-text">
                         <div class="row mb-3">
                             <div class="col-4">
-                                <img src="" class="img-thumbnail"></img>
+                                <img src="{{current_user.profile_picture.cdn_url}}" class="img-thumbnail"></img>
                             </div>
                             <div class="col-8">
                                 <div class="row">
                                     <div class="col">
-                                        {{current_user_details.username}}
+                                        <h3>Username:</h3>
+                                        {{current_user.username}}
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        {{current_user_details.email}}
+                                        <h3>Email:</h3>
+                                        {{current_user.email}}
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        {{current_user_details.first_name}}
+                                        <h3>First Name:</h3>
+                                        {{current_user.first_name}}
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        {{current_user_details.last_name}}
+                                        <h3>Last Name:</h3>
+                                        {{current_user.last_name}}
                                     </div>
                                 </div>
                             </div>
@@ -50,9 +54,16 @@
                         <div class="row">
                             <div class="col">
                                 <h3 class="">Bio</h3>
+                                {% if current_user.bio %}
                                 <blockquote class="blockquote">
-                                    <p class="mb-0">{{current_user_details.bio}}</p>
+                                    <p class="mb-0">{{current_user.bio}}</p>
                                 </blockquote>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <button class="btn essence-btn">Update Profile</button>
                             </div>
                         </div>
                     </div>

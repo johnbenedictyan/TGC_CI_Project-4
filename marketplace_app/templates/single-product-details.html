@@ -1,16 +1,13 @@
 {% extends "layout.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block single_product_details_area_section %}
 <!-- ##### Single Product Details Area Start ##### -->
 <section class="single_product_details_area d-flex align-items-center">
 
     <!-- Single Product Thumb -->
     <div class="single_product_thumb clearfix">
-        <div class="product_thumbnail_slides owl-carousel">
-            <img src="img/product-img/product-big-1.jpg" alt="">
-            <img src="img/product-img/product-big-2.jpg" alt="">
-            <img src="img/product-img/product-big-3.jpg" alt="">
-        </div>
+        <img src="{{ requested_listing.listing_photo.cdn_url }}" alt="">
     </div>
 
     <!-- Single Product Description -->
@@ -22,27 +19,15 @@
         <p class="product-price">${{requested_listing.price}}</p>
         <p class="product-desc">{{requested_listing.description}}</p>
 
-        <!-- Form -->
-        <form class="cart-form clearfix" method="post">
-            <!-- Select Box -->
-            <div class="select-box d-flex mt-50 mb-30">
-                <select name="select" id="productSize" class="mr-5">
-                    <option value="value">Size: XL</option>
-                    <option value="value">Size: X</option>
-                    <option value="value">Size: M</option>
-                    <option value="value">Size: S</option>
-                </select>
-                <select name="select" id="productColor">
-                    <option value="value">Color: Black</option>
-                    <option value="value">Color: White</option>
-                    <option value="value">Color: Red</option>
-                    <option value="value">Color: Purple</option>
-                </select>
-            </div>
-            <!-- Cart & Favourite Box -->
-            <div class="cart-fav-box d-flex align-items-center">
-                <!-- Cart -->
-                <button type="button" id="listing_buy_button" value="5" class="btn essence-btn">Buy</button>
+        <!-- message & Favourite Box -->
+            <div class="message-fav-box d-flex align-items-center">
+                <!-- message -->
+                {% if requested_listing.sold == True %}
+                <button type="button" class="btn essence-btn mx-2" disabled>Listing Sold</button>
+                {% else %}
+                <button type="button" id="listing_buy_button"  class="btn essence-btn mx-2" data-toggle="modal" data-target="#payment_modal">Buy</button>
+                {% endif %}
+                <button type="button" id="listing_message_seller_button" class="btn essence-btn mx-2">Message the Seller</button>
                 
                 {% if user_has_liked_this_post == True %}
                 <div class="product-favourite ml-4" data-listing-id="{{requested_listing.id}}">
@@ -54,7 +39,6 @@
                 </div>
                 {% endif %}
             </div>
-        </form>
     </div>
 </section>
 <!-- ##### Single Product Details Area End ##### -->
@@ -68,6 +52,7 @@
 {{form.media}}
 {% endblock %}
 {% block page_specific_js %}
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
 /* global $ */
 /* global axios */
@@ -87,6 +72,56 @@
                     console.log(error);
                 });
             });
+            $(".message-fav-box").on("click","#listing_message_seller_button",function(){
+                
+            });
     });
 </script>
+{% endblock %}
+{% block payment_modal_section %}
+<div class="modal fade" id="payment_modal" tabindex="-1" role="dialog" aria-labelledby="payment_modal_label" aria-hidden="true">
+    <div class="modal-dialog modal-delete" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row my-2">
+                        <div class="col text-center">
+                            <h3 class="modal-title">Payment</h3>
+                            <p>One step closer to getting your item</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <p>Item Name: <strong>{{requested_listing.name}}</strong></p>
+                            <p>Payment To: <strong>{{requested_listing.seller}}</strong></p>
+                        </div>
+                    </div>
+                    <div class="row my-2">
+                        <div class="col">
+                            <form method="POST" id='payment-form'>
+                                <label for="listing_price_total_amount">Total Amout:</label>
+                                <input type="text" readonly class="form-control-plaintext" value="{{requested_listing.price}}" name="listing_price_total_amount" id="listing_price_total_amount">
+                                <input type="hidden" id="listing_id" name="listing_id" value="{{requested_listing.id}}">
+                                {% csrf_token %}
+                                {% crispy payment_form %}
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer mb-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="button" class="btn essence-btn-danger w-75" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -8,7 +8,7 @@ class UserAccount(AbstractUser):
     last_name = models.CharField(max_length=30, blank=False)
     email = models.EmailField(blank=False)
     bio = models.TextField(blank=True)
-    profile_picture = ImageField(blank=True)
+    profile_picture = ImageField(blank=False)
     def __str__(self):
         return self.username
 

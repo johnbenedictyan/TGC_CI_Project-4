@@ -54,8 +54,20 @@ def logout(request):
 def account_details(request):
     current_user_id = request.session.get('_auth_user_id')
     current_user_id = request.user.id
-    current_user_details = UserAccount.objects.all().get(pk=current_user_id)
-    return render(request,"account_details.html",{
-        "current_user_details":current_user_details
-    })
-    
+    current_user = UserAccount.objects.all().get(pk=current_user_id)
+    if request.method=="GET":
+        user_details_form = RegisterForm(instance=current_user)
+        return render(request,"account_details.html",{
+            "current_user":current_user,
+            "user_details_form":user_details_form
+        })
+    else:
+        dirty_user_details_form = RegisterForm(request.POST,instance=current_user)
+        if dirty_user_details_form.is_valid():
+            dirty_user_details_form.save()
+            messages.success(request, "Your user details has been successfully updated!")
+            return redirect("main_page_link")
+        else:
+            return render(request,"listing-editor.html",{
+            "user_details_form":dirty_user_details_form
+        })

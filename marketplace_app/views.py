@@ -1,13 +1,16 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render,redirect,get_object_or_404,HttpResponse
 from django.http import JsonResponse
 from django.contrib import messages
 from django.forms import modelformset_factory
-from .forms import ListingForm
+from .forms import ListingForm, PaymentForm
 from project4_project import settings
-from .models import Listing, ListingCategory
+from .models import Listing, ListingCategory, Order
 from django.contrib.auth.decorators import login_required
 from user_accounts_app.models import UserAccount
 from django.db.models import Q
+import stripe,os
+from django.utils import timezone
+from django.core.mail import send_mail
 
 def search_marketplace(current_user,search_terms=None):
     if search_terms:
@@ -157,14 +160,58 @@ def categories(request,category_id):
     })
 
 def single_listing(request,listing_id):
-    requested_listing = Listing.objects.get(pk=listing_id)
-    user_has_liked_this_post = False
-    if request.user in list(requested_listing.likes.all()):
-        user_has_liked_this_post = True
-    return render(request,"single-product-details.html",{
-        "requested_listing":requested_listing,
-        "user_has_liked_this_post":user_has_liked_this_post
-    })
+    if request.method == "GET":
+        requested_listing = Listing.objects.get(pk=listing_id)
+        user_has_liked_this_post = False
+        if request.user in list(requested_listing.likes.all()):
+            user_has_liked_this_post = True
+        return render(request,"single-product-details.html",{
+            "requested_listing":requested_listing,
+            "user_has_liked_this_post":user_has_liked_this_post,
+            "payment_form":PaymentForm
+        })
+    else:
+        stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
+        payment_form = PaymentForm(request.POST) 
+        total_cost = request.POST.get("listing_price_total_amount")
+        if payment_form.is_valid():
+            user_email = request.user.email
+            new_order = Order.objects.create()
+            new_order.stripe_token = request.POST.get('stripe_id')
+            new_order.purchased_at = timezone.now()
+            new_order.ordered_by = request.user
+            new_order.save()
+            try:
+                customer = stripe.Charge.create(
+                    amount = int(total_cost * 100),
+                    currency = "sgd",
+                    description = "Order ID #" + str(new_order.id),
+                    source= new_order.stripe_token
+                    )
+            except stripe.error.CardError as e: 
+                print (e)
+                messages.error(request, "There is an issue with your card")
+                return redirect("main_page_link")
+                
+            if customer.paid:
+                listing_id = request.POST.get("listing_id")
+                listing = Listing.objects.get(pk=listing_id)
+                listing.sold = True
+                listing.save()
+                subject = "Your invoice for your order " + str(new_order.id)
+                message = "Your order has been processed and will be shipped to you shortly"
+                email_from = settings.EMAIL_HOST_USER
+                send_to = [user_email]
+                send_mail(subject, message, email_from, send_to)
+                messages.success(request, "Payment Successful")
+                return redirect("main_page_link")
+            else:
+                messages.error(request, "Payment Unsuccessful")
+                return redirect("main_page_link")
+            
+        else:
+            print(payment_form.is_valid())
+            print(payment_form.errors)
 
 @login_required
 def my_listings(request):

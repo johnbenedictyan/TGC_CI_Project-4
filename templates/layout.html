@@ -38,7 +38,7 @@
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
-                <a class="nav-brand" href="{% url 'main_page_link' %}"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
+                <a class="nav-brand" href="{% url 'main_page_link' %}">Smooth Selling</a>
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -108,18 +108,6 @@
                             <li><a href="{% url 'marketplace_link' %}">Marketplace</a></li>
                             <li><a href="{% url 'listingcreator_link' %}">Sell</a></li>
                             <li><a href="{% url 'my_listings_link' %}">My Listings</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="shop.html">Shop</a></li>
-                                    <li><a href="single-product-details.html">Product Details</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li><a href="single-blog.html">Single Blog</a></li>
-                                    <li><a href="regular-page.html">Regular Page</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </li>
                         </ul>
                     </div>
                     <!-- Nav End -->
@@ -147,9 +135,9 @@
                 <div class="user-logout-info">
                     <a href="{% url 'logout_link' %}"><img src="{% static 'img/core-img/logout.svg' %}" alt=""></a>
                 </div>
-                <!-- Cart Area -->
-                <div class="cart-area">
-                    <a href="#" id="essenceCartBtn"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+                <!-- message Area -->
+                <div class="message-area">
+                    <a href="#" id="essencemessageBtn"><img src="{% static 'img/core-img/messages.svg' %}" alt=""> <span>3</span></a>
                 </div>
             </div>
 
@@ -157,86 +145,70 @@
     </header>
     <!-- ##### Header Area End ##### -->
 
-    <!-- ##### Right Side Cart Area ##### -->
-    <div class="cart-bg-overlay"></div>
+    <!-- ##### Right Side message Area ##### -->
+    <div class="message-bg-overlay"></div>
 
-    <div class="right-side-cart-area">
+    <div class="right-side-message-area">
 
-        <!-- Cart Button -->
-        <div class="cart-button">
-            <a href="#" id="rightSideCart"><img src="{% static 'img/core-img/bag.svg' %}" alt=""> <span>3</span></a>
+        <!-- message Button -->
+        <div class="message-button">
+            <a href="#" id="rightSidemessage"><img src="{% static 'img/core-img/messages.svg' %}" alt=""> <span>3</span></a>
         </div>
 
-        <div class="cart-content d-flex">
+        <div class="message-content d-flex">
 
-            <!-- Cart List Area -->
-            <div class="cart-list">
-                <!-- Single Cart Item -->
-                <div class="single-cart-item">
+            <!-- message List Area -->
+            <div class="message-list">
+                <!-- Single message Item -->
+                <div class="single-message-item">
                     <a href="#" class="product-image">
-                        <img src="{% static 'img/product-img/product-1.jpg' %}" class="cart-thumb" alt="">
-                        <!-- Cart Item Desc -->
-                        <div class="cart-item-desc">
+                        <img src="{% static 'img/product-img/product-1.jpg' %}" class="message-thumb" alt="">
+                        <!-- message Item Desc -->
+                        <div class="message-item-desc">
                           <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
                             <span class="badge">Mango</span>
                             <h6>Button Through Strap Mini Dress</h6>
-                            <p class="size">Size: S</p>
-                            <p class="color">Color: Red</p>
                             <p class="price">$45.00</p>
                         </div>
                     </a>
                 </div>
 
-                <!-- Single Cart Item -->
-                <div class="single-cart-item">
+                <!-- Single message Item -->
+                <div class="single-message-item">
                     <a href="#" class="product-image">
-                        <img src="{% static 'img/product-img/product-2.jpg' %}" class="cart-thumb" alt="">
-                        <!-- Cart Item Desc -->
-                        <div class="cart-item-desc">
+                        <img src="{% static 'img/product-img/product-2.jpg' %}" class="message-thumb" alt="">
+                        <!-- message Item Desc -->
+                        <div class="message-item-desc">
                           <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
                             <span class="badge">Mango</span>
                             <h6>Button Through Strap Mini Dress</h6>
-                            <p class="size">Size: S</p>
-                            <p class="color">Color: Red</p>
                             <p class="price">$45.00</p>
                         </div>
                     </a>
                 </div>
 
-                <!-- Single Cart Item -->
-                <div class="single-cart-item">
+                <!-- Single message Item -->
+                <div class="single-message-item">
                     <a href="#" class="product-image">
-                        <img src="{% static 'img/product-img/product-3.jpg' %}" class="cart-thumb" alt="">
-                        <!-- Cart Item Desc -->
-                        <div class="cart-item-desc">
+                        <img src="{% static 'img/product-img/product-3.jpg' %}" class="message-thumb" alt="">
+                        <!-- message Item Desc -->
+                        <div class="message-item-desc">
                           <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
                             <span class="badge">Mango</span>
                             <h6>Button Through Strap Mini Dress</h6>
-                            <p class="size">Size: S</p>
-                            <p class="color">Color: Red</p>
                             <p class="price">$45.00</p>
                         </div>
                     </a>
                 </div>
             </div>
 
-            <!-- Cart Summary -->
-            <div class="cart-amount-summary">
-
-                <h2>Summary</h2>
-                <ul class="summary-table">
-                    <li><span>subtotal:</span> <span>$274.00</span></li>
-                    <li><span>delivery:</span> <span>Free</span></li>
-                    <li><span>discount:</span> <span>-15%</span></li>
-                    <li><span>total:</span> <span>$232.00</span></li>
-                </ul>
-                <div class="checkout-btn mt-100">
-                    <a href="checkout.html" class="btn essence-btn">check out</a>
-                </div>
+            <!-- message area -->
+            <div class="message-area-summary">
+                
             </div>
         </div>
     </div>
-    <!-- ##### Right Side Cart End ##### -->
+    <!-- ##### Right Side message End ##### -->
     {% block welcome_area_section %}
     {% endblock %}
     
@@ -268,6 +240,9 @@
     {% endblock %}
     
     {% block confirm_delete_modal_section %}
+    {% endblock %}
+    
+    {% block payment_modal_section %}
     {% endblock %}
     
     <!-- ##### Footer Area Start ##### -->

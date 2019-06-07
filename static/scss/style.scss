@@ -457,7 +457,7 @@ img {
     .favourite-area,
     .user-login-info,
     .user-logout-info,
-    .cart-area {
+    .message-area {
         a {
             position: relative;
             z-index: 1;
@@ -499,8 +499,8 @@ img {
     }
 }
 
-.cart-bg-overlay {
-    &.cart-bg-overlay-on {
+.message-bg-overlay {
+    &.message-bg-overlay-on {
         @include trans-duration(1000ms);
         position: fixed;
         width: 100%;
@@ -512,9 +512,9 @@ img {
     }
 }
 
-/* Cart Area CSS */
+/* message Area CSS */
 
-.right-side-cart-area {
+.right-side-message-area {
     position: fixed;
     width: 670px;
     height: 100%;
@@ -536,10 +536,10 @@ img {
         width: 400px;
         right: -550px;
     }
-    &.cart-on {
+    &.message-on {
         right: 0;
     }
-    .cart-button {
+    .message-button {
         a {
             position: absolute;
             top: 0;
@@ -570,7 +570,7 @@ img {
             }
         }
     }
-    .cart-content {
+    .message-content {
         position: relative;
         z-index: 1;
         width: 100%;
@@ -578,7 +578,7 @@ img {
         overflow-y: scroll;
         height: 100%;
 
-        .cart-list {
+        .message-list {
             position: relative;
             z-index: 10;
             @include flex(0 0 190px);
@@ -591,7 +591,7 @@ img {
                 @include flex(0 0 150px);
                 width: 150px;
             }
-            .single-cart-item {
+            .single-message-item {
                 position: relative;
                 z-index: 1;
                 @include trans-duration(500ms);
@@ -599,7 +599,7 @@ img {
                     position: relative;
                     z-index: 1;
                     display: block;
-                    .cart-item-desc {
+                    .message-item-desc {
                         position: absolute;
                         top: 0;
                         left: 0;
@@ -670,13 +670,13 @@ img {
                     }
                 }
                 &:hover {
-                    .product-image .cart-item-desc {
+                    .product-image .message-item-desc {
                         background-color: rgba(0, 0, 0, 0.8);
                     }
                 }
             }
         }
-        .cart-amount-summary {
+        .message-amount-summary {
             padding: 100px 10%;
             position: relative;
             z-index: 10;
@@ -1227,7 +1227,7 @@ img {
                 }
             }
         }
-        .cart-fav-box {
+        .message-fav-box {
             .favme {
                 cursor: pointer;
                 color: #ccc;

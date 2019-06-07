@@ -375,7 +375,7 @@ img {
   .header_area .favourite-area a,
   .header_area .user-login-info a,
   .header_area .user-logout-info a,
-  .header_area .cart-area a {
+  .header_area .message-area a {
     position: relative;
     z-index: 1;
     -webkit-box-flex: 0;
@@ -391,7 +391,7 @@ img {
       .header_area .favourite-area a,
       .header_area .user-login-info a,
       .header_area .user-logout-info a,
-      .header_area .cart-area a {
+      .header_area .message-area a {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 50px;
         flex: 0 0 50px;
@@ -400,12 +400,12 @@ img {
     .header_area .favourite-area a img,
     .header_area .user-login-info a img,
     .header_area .user-logout-info a img,
-    .header_area .cart-area a img {
+    .header_area .message-area a img {
       max-width: 20px; }
     .header_area .favourite-area a span,
     .header_area .user-login-info a span,
     .header_area .user-logout-info a span,
-    .header_area .cart-area a span {
+    .header_area .message-area a span {
       font-family: "Ubuntu", sans-serif;
       font-size: 18px;
       color: #0315ff;
@@ -416,7 +416,7 @@ img {
         .header_area .favourite-area a span,
         .header_area .user-login-info a span,
         .header_area .user-logout-info a span,
-        .header_area .cart-area a span {
+        .header_area .message-area a span {
           font-size: 14px; } }
   .header_area.sticky {
     position: fixed;
@@ -426,7 +426,7 @@ img {
     width: 100%;
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15); }
 
-.cart-bg-overlay.cart-bg-overlay-on {
+.message-bg-overlay.message-bg-overlay-on {
   -webkit-transition-duration: 1000ms;
   transition-duration: 1000ms;
   position: fixed;
@@ -437,8 +437,8 @@ img {
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 1050; }
 
-/* Cart Area CSS */
-.right-side-cart-area {
+/* message Area CSS */
+.right-side-message-area {
   position: fixed;
   width: 670px;
   height: 100%;
@@ -450,20 +450,20 @@ img {
   -webkit-transition-duration: 800ms;
   transition-duration: 800ms; }
   @media only screen and (min-width: 768px) and (max-width: 991px) {
-    .right-side-cart-area {
+    .right-side-message-area {
       width: 500px;
       right: -600px; } }
   @media only screen and (max-width: 767px) {
-    .right-side-cart-area {
+    .right-side-message-area {
       width: 270px;
       right: -400px; } }
   @media only screen and (min-width: 576px) and (max-width: 767px) {
-    .right-side-cart-area {
+    .right-side-message-area {
       width: 400px;
       right: -550px; } }
-  .right-side-cart-area.cart-on {
+  .right-side-message-area.message-on {
     right: 0; }
-  .right-side-cart-area .cart-button a {
+  .right-side-message-area .message-button a {
     position: absolute;
     top: 0;
     right: 100%;
@@ -476,27 +476,27 @@ img {
     line-height: 80px;
     background-color: #f5f7f9; }
     @media only screen and (max-width: 767px) {
-      .right-side-cart-area .cart-button a {
+      .right-side-message-area .message-button a {
         width: 50px;
         height: 50px;
         line-height: 50px; } }
-    .right-side-cart-area .cart-button a img {
+    .right-side-message-area .message-button a img {
       max-width: 20px; }
-    .right-side-cart-area .cart-button a span {
+    .right-side-message-area .message-button a span {
       font-family: "Ubuntu", sans-serif;
       font-size: 18px;
       color: #0315ff;
       font-weight: 700;
       position: absolute;
       top: -10px; }
-  .right-side-cart-area .cart-content {
+  .right-side-message-area .message-content {
     position: relative;
     z-index: 1;
     width: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
     height: 100%; }
-    .right-side-cart-area .cart-content .cart-list {
+    .right-side-message-area .message-content .message-list {
       position: relative;
       z-index: 10;
       -webkit-box-flex: 0;
@@ -504,27 +504,27 @@ img {
       flex: 0 0 190px;
       width: 190px; }
       @media only screen and (max-width: 767px) {
-        .right-side-cart-area .cart-content .cart-list {
+        .right-side-message-area .message-content .message-list {
           -webkit-box-flex: 0;
           -ms-flex: 0 0 100px;
           flex: 0 0 100px;
           width: 100px; } }
       @media only screen and (min-width: 576px) and (max-width: 767px) {
-        .right-side-cart-area .cart-content .cart-list {
+        .right-side-message-area .message-content .message-list {
           -webkit-box-flex: 0;
           -ms-flex: 0 0 150px;
           flex: 0 0 150px;
           width: 150px; } }
-      .right-side-cart-area .cart-content .cart-list .single-cart-item {
+      .right-side-message-area .message-content .message-list .single-message-item {
         position: relative;
         z-index: 1;
         -webkit-transition-duration: 500ms;
         transition-duration: 500ms; }
-        .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image {
+        .right-side-message-area .message-content .message-list .single-message-item .product-image {
           position: relative;
           z-index: 1;
           display: block; }
-          .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc {
+          .right-side-message-area .message-content .message-list .single-message-item .product-image .message-item-desc {
             position: absolute;
             top: 0;
             left: 0;
@@ -535,12 +535,12 @@ img {
             -webkit-transition-duration: 500ms;
             transition-duration: 500ms; }
             @media only screen and (max-width: 767px) {
-              .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc {
+              .right-side-message-area .message-content .message-list .single-message-item .product-image .message-item-desc {
                 padding: 5px; } }
             @media only screen and (min-width: 576px) and (max-width: 767px) {
-              .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc {
+              .right-side-message-area .message-content .message-list .single-message-item .product-image .message-item-desc {
                 padding: 30px 20px; } }
-            .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc .product-remove {
+            .right-side-message-area .message-content .message-list .single-message-item .product-image .message-item-desc .product-remove {
               position: absolute;
               top: 15px;
               right: 15px;
@@ -548,10 +548,10 @@ img {
               font-size: 12px;
               padding: 5px; }
               @media only screen and (max-width: 767px) {
-                .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc .product-remove {
+                .right-side-message-area .message-content .message-list .single-message-item .product-image .message-item-desc .product-remove {
                   top: 5px;
                   right: 5px; } }
-            .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc .badge {
+            .right-side-message-area .message-content .message-list .single-message-item .product-image .message-item-desc .badge {
               display: block;
               font-weight: 600;
               font-size: 10px;
@@ -560,16 +560,16 @@ img {
               margin-bottom: 5px;
               text-align: left;
               padding: 0; }
-            .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc h6 {
+            .right-side-message-area .message-content .message-list .single-message-item .product-image .message-item-desc h6 {
               font-size: 12px;
               color: #ffffff;
               text-transform: capitalize;
               margin-bottom: 30px; }
               @media only screen and (max-width: 767px) {
-                .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc h6 {
+                .right-side-message-area .message-content .message-list .single-message-item .product-image .message-item-desc h6 {
                   margin-bottom: 10px; } }
-            .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc .size,
-            .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc .color {
+            .right-side-message-area .message-content .message-list .single-message-item .product-image .message-item-desc .size,
+            .right-side-message-area .message-content .message-list .single-message-item .product-image .message-item-desc .color {
               display: block;
               font-weight: 600;
               font-size: 10px;
@@ -577,7 +577,7 @@ img {
               text-transform: uppercase;
               margin-bottom: 5px;
               line-height: 1; }
-            .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc .price {
+            .right-side-message-area .message-content .message-list .single-message-item .product-image .message-item-desc .price {
               font-family: "Ubuntu", sans-serif;
               font-size: 16px;
               font-weight: 700;
@@ -585,12 +585,12 @@ img {
               margin-top: 30px;
               color: #ffffff; }
               @media only screen and (max-width: 767px) {
-                .right-side-cart-area .cart-content .cart-list .single-cart-item .product-image .cart-item-desc .price {
+                .right-side-message-area .message-content .message-list .single-message-item .product-image .message-item-desc .price {
                   margin-top: 10px;
                   font-size: 12px; } }
-        .right-side-cart-area .cart-content .cart-list .single-cart-item:hover .product-image .cart-item-desc {
+        .right-side-message-area .message-content .message-list .single-message-item:hover .product-image .message-item-desc {
           background-color: rgba(0, 0, 0, 0.8); }
-    .right-side-cart-area .cart-content .cart-amount-summary {
+    .right-side-message-area .message-content .message-area-summary {
       padding: 100px 10%;
       position: relative;
       z-index: 10;
@@ -599,31 +599,31 @@ img {
       flex: 0 0 calc(100% - 190px);
       width: calc(100% - 190px); }
       @media only screen and (max-width: 767px) {
-        .right-side-cart-area .cart-content .cart-amount-summary {
+        .right-side-message-area .message-content .message-area-summary {
           -webkit-box-flex: 0;
           -ms-flex: 0 0 calc(100% - 100px);
           flex: 0 0 calc(100% - 100px);
           width: calc(100% - 100px);
           padding: 50px 15px; } }
       @media only screen and (min-width: 576px) and (max-width: 767px) {
-        .right-side-cart-area .cart-content .cart-amount-summary {
+        .right-side-message-area .message-content .message-area-summary {
           -webkit-box-flex: 0;
           -ms-flex: 0 0 calc(100% - 150px);
           flex: 0 0 calc(100% - 150px);
           width: calc(100% - 150px);
           padding: 50px 30px; } }
-      .right-side-cart-area .cart-content .cart-amount-summary h2 {
+      .right-side-message-area .message-content .message-area-summary h2 {
         font-size: 30px;
         margin-bottom: 100px; }
         @media only screen and (max-width: 767px) {
-          .right-side-cart-area .cart-content .cart-amount-summary h2 {
+          .right-side-message-area .message-content .message-area-summary h2 {
             font-size: 24px;
             margin-bottom: 30px; } }
         @media only screen and (max-width: 767px) {
-          .right-side-cart-area .cart-content .cart-amount-summary h2 {
+          .right-side-message-area .message-content .message-area-summary h2 {
             font-size: 30px;
             margin-bottom: 50px; } }
-      .right-side-cart-area .cart-content .cart-amount-summary .summary-table li {
+      .right-side-message-area .message-content .message-area-summary .summary-table li {
         margin-bottom: 20px;
         color: #000000;
         font-size: 14px;
@@ -637,18 +637,18 @@ img {
         -ms-flex-pack: justify;
         justify-content: space-between; }
         @media only screen and (max-width: 767px) {
-          .right-side-cart-area .cart-content .cart-amount-summary .summary-table li {
+          .right-side-message-area .message-content .message-area-summary .summary-table li {
             font-size: 12px;
             margin-bottom: 10px; } }
         @media only screen and (min-width: 576px) and (max-width: 767px) {
-          .right-side-cart-area .cart-content .cart-amount-summary .summary-table li {
+          .right-side-message-area .message-content .message-area-summary .summary-table li {
             font-size: 14px;
             margin-bottom: 15px; } }
-        .right-side-cart-area .cart-content .cart-amount-summary .summary-table li span:last-child {
+        .right-side-message-area .message-content .message-area-summary .summary-table li span:last-child {
           font-weight: 700;
           font-family: "Ubuntu", sans-serif; }
       @media only screen and (max-width: 767px) {
-        .right-side-cart-area .cart-content .cart-amount-summary .essence-btn {
+        .right-side-message-area .message-content .message-area-summary .essence-btn {
           min-width: 140px;
           width: 140px;
           padding: 0 15px; } }
@@ -1067,11 +1067,11 @@ img {
         width: 100%; }
         .single_product_details_area .single_product_desc .nice-select .list .option.selected {
           color: #0315ff; }
-    .single_product_details_area .single_product_desc .cart-fav-box .favme {
+    .single_product_details_area .single_product_desc .message-fav-box .favme {
       cursor: pointer;
       color: #ccc;
       font-size: 24px; }
-      .single_product_details_area .single_product_desc .cart-fav-box .favme.active {
+      .single_product_details_area .single_product_desc .message-fav-box .favme.active {
         color: #dc0345 !important; }
 
 /* :: 11.0 Footer Area CSS */

@@ -47,25 +47,25 @@
         });
     }
 
-    // :: Header Cart Active Code
-    var cartbtn1 = $('#essenceCartBtn');
-    var cartOverlay = $(".cart-bg-overlay");
-    var cartWrapper = $(".right-side-cart-area");
-    var cartbtn2 = $("#rightSideCart");
-    var cartOverlayOn = "cart-bg-overlay-on";
-    var cartOn = "cart-on";
+    // :: Header message Active Code
+    var messagebtn1 = $('#essencemessageBtn');
+    var messageOverlay = $(".message-bg-overlay");
+    var messageWrapper = $(".right-side-message-area");
+    var messagebtn2 = $("#rightSidemessage");
+    var messageOverlayOn = "message-bg-overlay-on";
+    var messageOn = "message-on";
 
-    cartbtn1.on('click', function () {
-        cartOverlay.toggleClass(cartOverlayOn);
-        cartWrapper.toggleClass(cartOn);
+    messagebtn1.on('click', function () {
+        messageOverlay.toggleClass(messageOverlayOn);
+        messageWrapper.toggleClass(messageOn);
     });
-    cartOverlay.on('click', function () {
-        $(this).removeClass(cartOverlayOn);
-        cartWrapper.removeClass(cartOn);
+    messageOverlay.on('click', function () {
+        $(this).removeClass(messageOverlayOn);
+        messageWrapper.removeClass(messageOn);
     });
-    cartbtn2.on('click', function () {
-        cartOverlay.removeClass(cartOverlayOn);
-        cartWrapper.removeClass(cartOn);
+    messagebtn2.on('click', function () {
+        messageOverlay.removeClass(messageOverlayOn);
+        messageWrapper.removeClass(messageOn);
     });
 
     // :: ScrollUp Active Code
@@ -141,7 +141,7 @@
 
     // :: Nicescroll Active Code
     if ($.fn.niceScroll) {
-        $(".cart-list, .cart-content").niceScroll();
+        $(".message-list, .message-content").niceScroll();
     }
 
     // :: wow Active Code
