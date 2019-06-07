@@ -1,4 +1,4 @@
-{% extends "layout.html %}
+{% extends "layout.html" %}
 {% load static %}
 {% block single_product_details_area_section %}
 <!-- ##### Single Product Details Area Start ##### -->
@@ -15,12 +15,12 @@
 
     <!-- Single Product Description -->
     <div class="single_product_desc clearfix">
-        <span>mango</span>
+        <span>{{requested_listing.seller}}</span>
         <a href="cart.html">
-            <h2>One Shoulder Glitter Midi Dress</h2>
+            <h2>{{requested_listing.name}}</h2>
         </a>
-        <p class="product-price"><span class="old-price">$65.00</span> $49.00</p>
-        <p class="product-desc">Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna vehicula, nec maximus est sollicitudin.</p>
+        <p class="product-price">${{requested_listing.price}}</p>
+        <p class="product-desc">{{requested_listing.description}}</p>
 
         <!-- Form -->
         <form class="cart-form clearfix" method="post">
@@ -42,11 +42,17 @@
             <!-- Cart & Favourite Box -->
             <div class="cart-fav-box d-flex align-items-center">
                 <!-- Cart -->
-                <button type="submit" name="addtocart" value="5" class="btn essence-btn">Add to cart</button>
-                <!-- Favourite -->
-                <div class="product-favourite ml-4">
-                    <a href="#" class="favme fa fa-heart"></a>
+                <button type="button" id="listing_buy_button" value="5" class="btn essence-btn">Buy</button>
+                
+                {% if user_has_liked_this_post == True %}
+                <div class="product-favourite ml-4" data-listing-id="{{requested_listing.id}}">
+                    <a href="#" class="favme fa fa-heart like_icon active"></a>
                 </div>
+                {% else %}
+                <div class="product-favourite ml-4" data-listing-id="{{requested_listing.id}}">
+                    <a href="#" class="favme fa fa-heart like_icon"></a>
+                </div>
+                {% endif %}
             </div>
         </form>
     </div>
@@ -60,4 +66,27 @@
   uploadcare.registerTab('preview', uploadcareTabEffects)
 </script>
 {{form.media}}
+{% endblock %}
+{% block page_specific_js %}
+<script type="text/javascript">
+/* global $ */
+/* global axios */
+    $(function(){
+        $(".product-favourite").on("click",".like_icon",function(){
+            let base_url = window.location.href;
+            let listing_id = $(this).parent().data("listing-id");
+            axios.get(base_url+"listing/single/"+listing_id.toString()+"/favourite/", {
+                    params: {
+                        listing_id:listing_id
+                    }
+                })
+                .then(function(response) {
+                    console.log(response);
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+            });
+    });
+</script>
 {% endblock %}

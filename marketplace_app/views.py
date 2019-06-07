@@ -11,7 +11,7 @@ from django.db.models import Q
 
 def search_marketplace(current_user,search_terms=None):
     if search_terms:
-        selected_listings = Listing.objects.filter(Q(name__contains=search_terms)|Q(description__contains=search_terms)).exclude(seller=current_user)
+        selected_listings = Listing.objects.filter(Q(name__icontains=search_terms)|Q(description__icontains=search_terms)).exclude(seller=current_user)
         number_of_listings = selected_listings.count()
     else:
         selected_listings = Listing.objects.all().exclude(seller=current_user)
@@ -20,7 +20,7 @@ def search_marketplace(current_user,search_terms=None):
     
 def sort_by_new(current_user,search_terms=None):
     if search_terms:
-        selected_listings = Listing.objects.filter(Q(name__contains=search_terms)|Q(description__contains=search_terms)).exclude(seller=current_user).order_by('date_time_listed')
+        selected_listings = Listing.objects.filter(Q(name__icontains=search_terms)|Q(description__icontains=search_terms)).exclude(seller=current_user).order_by('date_time_listed')
         number_of_listings = selected_listings.count()
     else:
         selected_listings = Listing.objects.all().exclude(seller=current_user).order_by('date_time_listed')
@@ -29,7 +29,7 @@ def sort_by_new(current_user,search_terms=None):
 
 def sort_by_price_low_to_high(current_user,search_terms=None):
     if search_terms:
-        selected_listings = Listing.objects.filter(Q(name__contains=search_terms)|Q(description__contains=search_terms)).exclude(seller=current_user).order_by('price')
+        selected_listings = Listing.objects.filter(Q(name__icontains=search_terms)|Q(description__icontains=search_terms)).exclude(seller=current_user).order_by('price')
         number_of_listings = selected_listings.count()
     else:
         selected_listings = Listing.objects.all().exclude(seller=current_user).order_by('price')
@@ -38,7 +38,7 @@ def sort_by_price_low_to_high(current_user,search_terms=None):
 
 def sort_by_price_high_to_low(current_user,search_terms=None):
     if search_terms:
-        selected_listings = Listing.objects.filter(Q(name__contains=search_terms)|Q(description__contains=search_terms)).exclude(seller=current_user).order_by('price').desc()
+        selected_listings = Listing.objects.filter(Q(name__icontains=search_terms)|Q(description__icontains=search_terms)).exclude(seller=current_user).order_by('price').desc()
         number_of_listings = selected_listings.count()
     else:
         selected_listings = Listing.objects.all().exclude(seller=current_user).order_by('price').desc()
@@ -47,7 +47,7 @@ def sort_by_price_high_to_low(current_user,search_terms=None):
 
 def sort_by_highest_rated(current_user,search_terms=None):
     if search_terms:
-        selected_listings = Listing.objects.filter(Q(name__contains=search_terms)|Q(description__contains=search_terms)).exclude(seller=current_user).order_by('likes').desc()
+        selected_listings = Listing.objects.filter(Q(name__icontains=search_terms)|Q(description__icontains=search_terms)).exclude(seller=current_user).order_by('likes').desc()
         number_of_listings = selected_listings.count()
     else:
         selected_listings = Listing.objects.all().exclude(seller=current_user).order_by('likes').desc()
@@ -63,10 +63,12 @@ search_dict = {
 }
 
 # Create your views here.
-def marketplace(request,search_terms=None):
+def marketplace(request):
     current_user = request.user
     liked_listing_list = list(Listing.objects.filter(likes=current_user).exclude(seller=current_user).values_list('id', flat=True))
-    if search_terms:
+    if request.GET.get("search-terms"):
+        search_terms = request.GET.get("search-terms")
+        print("SEARCHING")
         if request.GET.get("sort_by"):
             if(request.GET.get("sort_by")=="new"):
                 data = search_dict["sort_by_new"](current_user,search_terms)
@@ -156,8 +158,12 @@ def categories(request,category_id):
 
 def single_listing(request,listing_id):
     requested_listing = Listing.objects.get(pk=listing_id)
+    user_has_liked_this_post = False
+    if request.user in list(requested_listing.likes.all()):
+        user_has_liked_this_post = True
     return render(request,"single-product-details.html",{
-        "requested_listing":requested_listing
+        "requested_listing":requested_listing,
+        "user_has_liked_this_post":user_has_liked_this_post
     })
 
 @login_required

@@ -1,9 +1,15 @@
 from django.shortcuts import render,redirect
 from marketplace_app.models import ListingCategory
+from django.urls import reverse
 
 # Create your views here.
 def main_page(request):
-    return render(request,"index.html")
+    if request.GET.get("search-terms"):
+        base_url = reverse('marketplace_link')
+        redirect_url = base_url+"?search-terms="+request.GET.get("search-terms")
+        return redirect(redirect_url)
+    else:
+        return render(request,"index.html")
 
 def test_page(request):
     return render(request,"test.html")

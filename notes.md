@@ -50,3 +50,10 @@ Things that dont work:
 3. Try to get the time to be converted from utc to the user's local time zone
 4. Filter by the 4 nice select things dont work, cant get the form to submit.
 5. Thing about a custom url redirect to stack the search terms with the categories (https://stackoverflow.com/questions/3765887/add-request-get-variable-using-django-shortcuts-redirect)
+6. 
+
+Things used
+pyuploadcare
+essence html template by colorlib
+this guy's toggle https://github.com/gitbrent/bootstrap4-toggle
+this guy for the custom widget https://gitlab.com/ihfazhillah/django-custom-widget-code/blob/django-lt-1.11/custom_widget/custom_widget/widgets.py
