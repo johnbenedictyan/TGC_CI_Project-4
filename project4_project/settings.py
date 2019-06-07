@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['project4-johnbenedict.c9users.io',"tgc-ci-project-4.herokuapp.
 # Application definition
 
 INSTALLED_APPS = [
+    'pyuploadcare.dj',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +47,6 @@ INSTALLED_APPS = [
     'storages',
     'crispy_forms',
     'chat_app',
-    'pyuploadcare',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
